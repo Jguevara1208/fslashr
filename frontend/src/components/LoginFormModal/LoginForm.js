@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
 
@@ -8,15 +9,18 @@ function LoginForm() {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
+    const history = useHistory()
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([])
-        return dispatch(sessionActions.login({ credential, password })).catch(
+        dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             }
         );
+        history.push('/home')
     };
 
     return (

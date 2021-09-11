@@ -3,9 +3,9 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     const favorites = []
-    for (let i = 2; i < 12; i++) {
+    for (let i = 1; i < 11; i++) {
       for(let j = 0; j < 10; j++) {
-        const randomNumber = Math.floor(Math.random() * 506) + 1
+        const randomNumber = Math.floor(Math.random() * 364) + 1
         favorites.push({
           userId: i,
           photoId: randomNumber

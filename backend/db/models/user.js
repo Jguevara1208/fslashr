@@ -4,6 +4,10 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    avatarUrl: DataTypes.STRING,
+    bio: DataTypes.STRING,
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -106,13 +110,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   
-  User.signup = async function ({ username, email, password }) {
+  User.signup = async function ({ firstName, lastName, username, email, avatarUrl, bio, password }) {
     const hashedPassword = bcrypt.hashSync(password);
+
     const user = await User.create({
+      firstName,
+      lastName,
       username,
       email,
+      avatarUrl,
+      bio,
       hashedPassword,
     });
+
     return await User.scope('currentUser').findByPk(user.id);
   };
 

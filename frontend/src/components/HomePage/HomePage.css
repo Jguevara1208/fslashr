@@ -1,0 +1,14 @@
+.avatar {
+    width: 3em;
+    height: 3em;
+    border-radius: 18px;
+    background-size: cover;
+    background-position: top;
+}
+
+.feed-photo {
+    width:70em;
+    height:70em;
+    background-size: cover;
+    background-position: center;
+}
