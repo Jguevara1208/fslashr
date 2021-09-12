@@ -11,7 +11,6 @@ module.exports = {
     let usedPhotos = new Set()
     
     photoUrls.forEach(photoUrl => {
-      console.log(usedPhotos.has(photoUrl))
       const randomUser = Math.floor(Math.random() * 10) + 1
       const randomCameraSetting = Math.floor(Math.random() * 8)
       if (!usedPhotos.has(photoUrl)) {

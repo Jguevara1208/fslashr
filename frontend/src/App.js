@@ -3,8 +3,9 @@ import { useDispatch, useSelector} from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
-import HomePage from './components/HomePage'
-import * as sessionActions from './store/session'
+import HomePage from './components/HomePage';
+import UsersProfile from './components/UsersProfile';
+import * as sessionActions from './store/session';
 
 function App() {
   const dispatch = useDispatch()
@@ -27,6 +28,9 @@ function App() {
       )}
       {isLoaded && (
         <Switch>
+          <Route path='/users/:userId'>
+            <UsersProfile />
+          </Route>
           <Route path='/home'>
             <HomePage />
           </Route>

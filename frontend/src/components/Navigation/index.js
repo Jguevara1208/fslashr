@@ -11,7 +11,7 @@ function Navigation( {isLoaded} ) {
     
     return (
         <nav>
-            <NavLink exact to='/'>{NavLogo}</NavLink>
+            <NavLink exact to='/home'>{NavLogo}</NavLink>
             {isLoaded && (
                 <>
                     <NavLink to='/upload'><AiOutlineCloudUpload style={{fontSize: '2.2em'}} /></NavLink>
