@@ -2,10 +2,15 @@ import './UsersProfile.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInfoThunk } from '../../store/userInfo'
-import ProfileNav from '../ProfileNav'
-import UserProfileBanner from '../UserProfileBanner';
+import ProfileNav from './ProfileNav'
+import UserProfileBanner from './UserProfileBanner';
 import PhotoStream from '../PhotoStream';
-import { useParams } from 'react-router';
+import Albums from './Albums'
+import Favorites from './Favorites'
+import Following from './Following'
+import About from './About'
+import Edit from './Edit'
+import { useParams, Route, Switch} from 'react-router-dom';
 
 function UsersProfile() {
     const dispatch = useDispatch();
@@ -35,7 +40,27 @@ function UsersProfile() {
                 <>
                     <UserProfileBanner data={data} />
                     <ProfileNav />
-                    <PhotoStream photos={photos}/>
+                    <Switch>
+                        <Route path='/users/:userId/edit'>
+                            <Edit />
+                        </Route>
+                        <Route path='/users/:userId/about'>
+                            <About />
+                        </Route>
+                        <Route path='/users/:userId/albums'>
+                            <Albums />
+                        </Route>
+                        <Route path='/users/:userId/favorites'>
+                            <Favorites />
+                        </Route>
+                        <Route path='/users/:userId/following'>
+                            <Following />
+                        </Route>
+                        <Route path='/users/:userId'>
+                            <PhotoStream photos={photos}/>
+                        </Route>
+
+                    </Switch>
                 </>
             )}
         </>

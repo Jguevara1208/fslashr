@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
 
 function ProfileNav() {
     const { userId } = useParams();

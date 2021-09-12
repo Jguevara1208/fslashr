@@ -5,8 +5,11 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { Photo, User, Favorite, Album, Follow } = require('../../db/models')
 const { Op } = require('sequelize');
-
 const router = express.Router();
+
+/*-------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------Validations------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------*/
 
 const validateSignup = [
     check('email')
@@ -28,6 +31,9 @@ const validateSignup = [
     handleValidationErrors,
 ];
 
+/*-------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------User Signup------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------*/
 
 router.post('/', validateSignup, asyncHandler(async(req, res) => {
     const { 
@@ -48,60 +54,70 @@ router.post('/', validateSignup, asyncHandler(async(req, res) => {
         lastName,
         avatarUrl,
         bio
-    })
-    await setTokenCookie(res, user)
-    return res.json({user})
+    });
+
+    await setTokenCookie(res, user);
+
+    return res.json({user});
 }))
 
+/*-----------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------User Info------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------*/
+
 router.get('/:userId/info', restoreUser, asyncHandler(async (req, res) => {
-    const userId = req.params.userId
+    const userId = req.params.userId;
     const info = await User.findByPk(userId, {
         include: [
             { model: User, as: 'followings' },
             { model: User, as: 'followers' },
             { model: Photo },
             { model: Photo, as: 'favorites' },
-            { model: Album }
+            { model: Album , include: {
+                model: Photo,
+                where: { userId }
+            }}
         ]
-    })
+    });
 
+    const { favorites, followings, followers, Albums: albums, Photos: photos } = info;
 
-    const { favorites, followings, followers, Albums: albums, Photos: photos } = info
-
-    const userFollowingIds = followings.map(following => following.id)
+    const userFollowingIds = followings.map(following => following.id);
 
     const feed = await Photo.findAll({
-        include: [User],
-        where: {
-            userId: userFollowingIds
-        }
-    })
+        include: [User], 
+        where: { userId: userFollowingIds }
+    });
 
+    console.log(info.Albums[0].Photos)
 
-    res.json({ feed, info, favorites, followings, followers, albums, photos })
+    res.json({ feed, info, favorites, followings, followers, albums, photos });
 }))
+
+/*---------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------Follows------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------*/
 
 router.post('/follow', requireAuth, asyncHandler(async (req, res) => {
     const userId = req.user.id;
-    const followingId = req.body.userToFollow
+    const followingId = req.body.userToFollow;
     await Follow.create({
         userId,
         followingId
-    })
-}))
+    });
+}));
 
 router.delete('/follow', requireAuth, asyncHandler(async (req, res) => {
     const userId = req.user.id;
-    const followingId = req.body.userToUnfollow
+    const followingId = req.body.userToUnfollow;
 
     const follow = await Follow.findOne({
         where: {
             [Op.and]: [{ userId: userId }, { followingId: followingId }]
         }
-    })
-    console.log(follow)
+    });
 
-    follow.destroy()
-}))
+    follow.destroy();
+}));
 
 module.exports = router;

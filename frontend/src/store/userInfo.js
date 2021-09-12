@@ -1,7 +1,6 @@
 import { csrfFetch } from "./csrf";
 
 const GET_INFO = 'userInfo/GET_INFO';
-const ADD_FOLLOW = 'userInfo/ADD_FOLLOW';
 
 const userInfo = (user) => {
     return {
@@ -10,15 +9,10 @@ const userInfo = (user) => {
     };
 };
 
-const addFollow = () => {
-    return {
-        type: ADD_FOLLOW
-    }
-}
 
 export const unfollowUser = (userId) => async (dispatch) => {
     const body = { userToUnfollow: userId }
-    const response = await csrfFetch('/api/users/follow', {
+    await csrfFetch('/api/users/follow', {
         method: 'DELETE',
         headers: {
             "Content-Type" : "application/json"
@@ -29,7 +23,7 @@ export const unfollowUser = (userId) => async (dispatch) => {
 
 export const followUser = (userId) => async (dispatch) => {
     const body = { userToFollow: userId }
-    const response = await csrfFetch('/api/users/follow', {
+    await csrfFetch('/api/users/follow', {
         method: 'POST',
         headers: {
             "Content-Type" : "application/json"
