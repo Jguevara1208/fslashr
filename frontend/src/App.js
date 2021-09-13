@@ -6,6 +6,8 @@ import SplashPage from './components/SplashPage';
 import HomePage from './components/HomePage';
 import UsersProfile from './components/UsersProfile';
 import AlbumPage from './components/AlbumPage';
+import ImageUpload from './components/ImageUpload';
+import ImagePage from './components/ImagePage';
 import * as sessionActions from './store/session';
 
 function App() {
@@ -37,6 +39,12 @@ function App() {
           </Route>
           <Route path='/home'>
             <HomePage />
+          </Route>
+          <Route path='/images/upload'>
+            <ImageUpload />
+          </Route>
+          <Route path='/images/:photoId'>
+            <ImagePage />
           </Route>
         </Switch>
       )}

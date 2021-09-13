@@ -1,0 +1,41 @@
+const express = require('express');
+const asyncHandler = require('express-async-handler');
+const {  requireAuth, restoreUser } = require('../../utils/auth');
+const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3')
+const { Photo, User, Favorite, Album, Follow, Comment} = require('../../db/models')
+const { Op } = require('sequelize');
+const router = express.Router();
+
+/*------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------AWS Image Upload------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------*/
+
+
+router.post('/', restoreUser, singleMulterUpload("image"), asyncHandler(async (req, res) => {
+    const imgUrl = await singlePublicFileUpload(req.file)
+    const userId = req.user.id
+    let albumId;
+    const { caption, cameraSettings } = req.body
+    req.body.albumId === 'undefined' ? albumId = null : albumId = req.body.albumId
+
+    const photo = await Photo.create({imgUrl, userId, albumId, caption, cameraSettings})
+    res.json(photo)
+}))
+
+router.get('/:photoId', restoreUser, asyncHandler(async (req, res) => {
+    const photoId = req.params.photoId;
+    const image = await Photo.findByPk(photoId, {
+        include: [{
+            model: User,
+            include: [
+                { model: User, as: 'followings' },
+                { model: User, as: 'followers' }
+            ]}, 
+            { model: Comment, include: { model: User}},
+            { model: User, as: 'favorites'}
+        ]
+    });
+
+    res.json(image)
+}))
+module.exports = router;

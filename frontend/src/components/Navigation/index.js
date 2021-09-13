@@ -13,7 +13,7 @@ function Navigation( {isLoaded} ) {
             <NavLink exact to='/home'>{NavLogo}</NavLink>
             {isLoaded && (
                 <>
-                    <NavLink to='/upload'><AiOutlineCloudUpload style={{fontSize: '2.2em'}} /></NavLink>
+                    <NavLink to='/images/upload'><AiOutlineCloudUpload style={{fontSize: '2.2em'}} /></NavLink>
                     <ProfileButton user={sessionUser} />
                 </>
             )}

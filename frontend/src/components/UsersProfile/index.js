@@ -42,7 +42,7 @@ function UsersProfile() {
                     <ProfileNav />
                     <Switch>
                         <Route path='/users/:userId/edit'>
-                            <Edit />
+                            <Edit photos={photos}/>
                         </Route>
                         <Route path='/users/:userId/about'>
                             <About user={userInfo} followers={followers} following={following}/>

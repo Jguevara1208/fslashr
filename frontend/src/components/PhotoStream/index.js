@@ -11,7 +11,7 @@ function PhotoStream({photos}) {
             <div className='container__photos'>
                 {photos && photos.map((photo) => (
                     <div key={photo.id}>
-                        <Link to={`/photos/${photo.id}`}>
+                        <Link to={`/images/${photo.id}`}>
                             <div
                                 className='photoStream'
                                 key={photo.id}
