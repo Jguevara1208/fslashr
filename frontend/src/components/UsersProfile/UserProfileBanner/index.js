@@ -50,7 +50,7 @@ function UserProfileBanner({data}) {
 
                     <p>{followers?.length} Followers</p>
                     <p>{following?.length} Following</p>
-                    <p>{photos.length} Photos</p>
+                    <p>{photos} Photos</p>
                 </div>
             )}
         </>

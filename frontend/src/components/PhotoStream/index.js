@@ -10,8 +10,8 @@ function PhotoStream({photos}) {
         <>
             <div className='container__photos'>
                 {photos && photos.map((photo) => (
-                    <>
-                        <Link to={`/photos/${photo.id}`} key={photo.id}>
+                    <div key={photo.id}>
+                        <Link to={`/photos/${photo.id}`}>
                             <div
                                 className='photoStream'
                                 key={photo.id}
@@ -24,9 +24,10 @@ function PhotoStream({photos}) {
                                     <BiPhotoAlbum style={{ fontSize: '25', color: 'black' }}/>
                                 )}
                                 <BiComment style={{ fontSize: '25', color: 'black' }} />
+                                <p>shot by: {photo.User.username}</p>
                             </div>
                         </Link>
-                    </>
+                    </div>
                 ))}
             </div>
         </>

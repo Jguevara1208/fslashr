@@ -71,8 +71,10 @@ router.get('/:userId/info', restoreUser, asyncHandler(async (req, res) => {
         include: [
             { model: User, as: 'followings' },
             { model: User, as: 'followers' },
-            { model: Photo },
-            { model: Photo, as: 'favorites' },
+            { model: Photo, include: { model: User }},
+            { model: Photo, as: 'favorites', include: {
+                model: User
+            }},
             { model: Album , include: {
                 model: Photo,
                 where: { userId }
@@ -88,8 +90,6 @@ router.get('/:userId/info', restoreUser, asyncHandler(async (req, res) => {
         include: [User], 
         where: { userId: userFollowingIds }
     });
-
-    console.log(info.Albums[0].Photos)
 
     res.json({ feed, info, favorites, followings, followers, albums, photos });
 }))
@@ -119,5 +119,6 @@ router.delete('/follow', requireAuth, asyncHandler(async (req, res) => {
 
     follow.destroy();
 }));
+
 
 module.exports = router;

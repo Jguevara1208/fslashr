@@ -5,6 +5,7 @@ import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import HomePage from './components/HomePage';
 import UsersProfile from './components/UsersProfile';
+import AlbumPage from './components/AlbumPage';
 import * as sessionActions from './store/session';
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
       )}
       {isLoaded && (
         <Switch>
+          <Route path='/albums/:albumId'>
+            <AlbumPage />
+          </Route>
           <Route path='/users/:userId'>
             <UsersProfile />
           </Route>

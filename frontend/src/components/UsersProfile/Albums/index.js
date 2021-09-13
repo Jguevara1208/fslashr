@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getInfoThunk} from '../../../store/userInfo';
-import { useParams } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
+import './Albums.css'
 
 function Album() {
     const dispatch = useDispatch();
@@ -18,7 +19,9 @@ function Album() {
             <div className='albums-container'>
                 {currentUserAlbums && currentUserAlbums.map( album => (
                     <div className='album-card' key={album.id}>
-                        <div className='album-photo' style={{backgroundImage: `url('${album.Photos[0].imgUrl}')`}} />
+                        <Link to={`/albums/${album.id}`}>
+                            <div className='album-photo' style={{backgroundImage: `url('${album.Photos[0].imgUrl}')`}} />
+                        </Link>
                         <p>{album.title}</p>
                         <p>{album.Photos.length} photos</p>
                     </div>

@@ -15,7 +15,6 @@ function ProfileNav() {
                 <>
                     <NavLink exact to={`/users/${userId}/edit`}>Edit Photos</NavLink>
                     <NavLink exact to={`/users/${userId}/favorites`}>Favorites</NavLink>
-                    <NavLink exact to={`/users/${userId}/following`}>Following</NavLink>
                 </>
                 )}
             </nav>

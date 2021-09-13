@@ -1,6 +1,6 @@
-.album-photo {
-    width: 30em;
-    height: 30em;
+.album-banner {
+    width: 70vw;
+    height: 15vh;
     background-size: cover;
     background-position: center;
 }

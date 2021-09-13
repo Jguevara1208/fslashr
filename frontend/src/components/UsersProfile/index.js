@@ -7,7 +7,6 @@ import UserProfileBanner from './UserProfileBanner';
 import PhotoStream from '../PhotoStream';
 import Albums from './Albums'
 import Favorites from './Favorites'
-import Following from './Following'
 import About from './About'
 import Edit from './Edit'
 import { useParams, Route, Switch} from 'react-router-dom';
@@ -21,6 +20,7 @@ function UsersProfile() {
     const photos = useSelector(state => state.currentUser.photos)
     const following = useSelector(state => state.currentUser.followings)
     const followers = useSelector(state => state.currentUser.followers)
+    const favorites = useSelector(state => state.currentUser.favorites)
 
     const data = {
         userInfo,
@@ -45,21 +45,17 @@ function UsersProfile() {
                             <Edit />
                         </Route>
                         <Route path='/users/:userId/about'>
-                            <About />
+                            <About user={userInfo} followers={followers} following={following}/>
                         </Route>
                         <Route path='/users/:userId/albums'>
                             <Albums />
                         </Route>
                         <Route path='/users/:userId/favorites'>
-                            <Favorites />
-                        </Route>
-                        <Route path='/users/:userId/following'>
-                            <Following />
+                            <Favorites favorites={favorites}/>
                         </Route>
                         <Route path='/users/:userId'>
                             <PhotoStream photos={photos}/>
                         </Route>
-
                     </Switch>
                 </>
             )}
