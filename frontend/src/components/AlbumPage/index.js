@@ -9,18 +9,19 @@ import { useEffect } from 'react';
 function AlbumPage() {
     const { albumId } = useParams()
     const dispatch = useDispatch()
-    const album = useSelector(state => state.album.album)
+    const firstImage = useSelector(state => state?.album?.banner)
+    const album = useSelector(state => state?.album?.album)
 
     useEffect(() => {
         dispatch(getAlbum(albumId))
-    },[albumId, dispatch])
+    },[dispatch])
 
 
     return (
         <>
             {album && (
                 <div>
-                    <div className='album-banner' style={{backgroundImage: `url('${album[0].imgUrl}')`}}>
+                    <div className='album-banner' style={{backgroundImage: `url('${firstImage?.imgUrl}')`}}>
                         <p>{album.title}</p>
                     </div>
                     <PhotoStream photos={album} />

@@ -107,6 +107,17 @@ router.get('/:userId/images', restoreUser, asyncHandler( async (req, res) => {
     res.json(photos)
 }))
 
+router.get('/:userId/unused-photos', restoreUser, asyncHandler(async (req, res) => {
+    const userId = req.params.userId;
+    const unusedPhotos = await Photo.findAll({
+        where: {
+            [Op.and] : [{ userId },{ albumId: null }]
+        }
+    })
+
+    res.json(unusedPhotos)
+}))
+
 /*---------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------Follows------------------------------------------------*/
 /*---------------------------------------------------------------------------------------------------*/

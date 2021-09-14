@@ -4,6 +4,14 @@ const GET_INFO = 'userInfo/GET_INFO';
 
 const GET_ALL_IMAGES = 'image/GET_ALL_IMAGES';
 
+const ADD_ALBUM = 'album/ADD_ALBUM';
+
+export const addAlbumAction = (album) => {
+    return {
+        type: ADD_ALBUM,
+        album
+    };
+};
 
 const userInfo = (user) => {
     return {
@@ -91,6 +99,11 @@ const userInfoReducer = (state=initialState, action) => {
             newState = Object.assign({}, state);
             newState.photos = action.photos;
             return newState;
+        case ADD_ALBUM:
+            newState = Object.assign({}, state);
+            let newAlbums = [...newState.albums, action.album];
+            newState.albums = newAlbums;
+            return newState
         default:
             return state;
     };

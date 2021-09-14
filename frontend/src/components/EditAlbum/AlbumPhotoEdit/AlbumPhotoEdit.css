@@ -1,0 +1,14 @@
+.selected {
+    width: 30em;
+    height: 30em;
+    background-size: cover;
+    background-position: center;
+}
+
+.unSelected {
+    width: 30em;
+    height: 30em;
+    background-size: cover;
+    background-position: center;
+    opacity: 50%;
+}

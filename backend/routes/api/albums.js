@@ -12,19 +12,72 @@ const router = express.Router();
 router.get('/:albumId', restoreUser, asyncHandler( async (req, res) => {
     const albumId = req.params.albumId
     const album = await Photo.findAll({
-        include: {model: User},
+        include: [{model: User}, {model: Album}],
         where: {albumId}
     })
 
     res.json(album)
 }))
 
-// router.patch('/:id', restoreUser, asyncHandler( async (req, res) => {
+router.post('/', restoreUser, asyncHandler(async (req, res) => {
+    const { title, photos, userId } = req.body;
+    const newAlbum = await Album.create({userId, title});
+    const albumId = newAlbum.id
 
-// }))
+    for (let i = 0; i < photos.length; i++) {
+        const photo = photos[i]
+        const photoDB = await Photo.findByPk(photo);
+        await photoDB.update({ albumId: newAlbum.id})
+    }
 
-// router.delete('/:id', restoreUser, asyncHandler( async (req, res) => {
+    const newAlbumPhotos = await  Photo.findAll({
+        include: { model: User },
+        where: { albumId }
+    })
 
-// }))
+    res.json(newAlbumPhotos)
+}))
+
+router.patch('/:albumId', restoreUser, asyncHandler( async (req, res) => {
+    const albumId = req.params.albumId;
+    const { title, photoIdsToRemove, photoIdsToAdd } = req.body
+
+    const newAlbum = await Album.findByPk(albumId);
+    await newAlbum.update({title});
+
+    for(let i = 0; i < photoIdsToRemove.length; i++) {
+        const photo = photoIdsToRemove[i];
+        const photoDB = await Photo.findByPk(photo);
+        await photoDB.update({ albumId: null });
+        console.log(photoDB.albumId)
+    };
+
+    for(let i = 0; i < photoIdsToAdd.length; i++) {
+        const photo = photoIdsToAdd[i];
+        const photoDB = await Photo.findByPk(photo);
+        await photoDB.update({albumId: newAlbum.id });
+        console.log(photoDB.albumId)
+    }
+
+    const newAlbumPhotos = await Photo.findAll({
+        include: { model: User },
+        where: { albumId: newAlbum.id }
+    });
+
+    res.json(newAlbumPhotos)
+}))
+
+router.delete('/:albumId', restoreUser, asyncHandler( async (req, res) => {
+    const albumId = req.params.albumId;
+    const photos = await Photo.findAll({where: { albumId }});
+
+    for (let i = 0; i < photos.length; i++) {
+        const photo = await Photo.findByPk(photos[i].id)
+        const updated = await photo.update({albumId: null})
+    }
+
+    const album = await Album.findByPk(albumId);
+    await album.destroy()
+}))
 
 module.exports = router;
