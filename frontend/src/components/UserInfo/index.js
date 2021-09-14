@@ -8,7 +8,7 @@ function UserInfo({data}) {
     const dispatch = useDispatch();
     
     const sessionUserId = useSelector(state => state.session.user.id);
-    const { userInfo, followers, following, photos, background } = data;
+    const { userInfo, followers, following } = data;
     
     const [follow, setFollow] = useState(true);
     const [followText, setFollowText] = useState('Follow');

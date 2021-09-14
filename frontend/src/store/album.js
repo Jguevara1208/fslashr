@@ -49,22 +49,22 @@ export const editAlbum = (album) => async (dispatch) => {
         },
         body: JSON.stringify(album)
     });
-    const album = await response.json();
-    dispatch(editAlbumAction(album));
-    return album;
+    const newAlbum = await response.json();
+    dispatch(editAlbumAction(newAlbum));
+    return newAlbum;
 }
 
 export const deleteAlbum = (albumId) => async (dispatch) => {
     const response = await csrfFetch(`/api/albums/${albumId}`);
     const album = await response.json();
-    dispatch(setAlbumAction(album));
+    dispatch(deleteAlbumAction(album));
     return album;
 }
 
 export const createAlbum = (albumId) => async (dispatch) => {
     const response = await csrfFetch(`/api/albums/${albumId}`);
     const album = await response.json();
-    dispatch(setAlbumAction(album));
+    dispatch(createAlbumAction(album));
     return album;
 }
 

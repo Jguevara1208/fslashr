@@ -4,6 +4,7 @@ const GET_INFO = 'userInfo/GET_INFO';
 
 const GET_ALL_IMAGES = 'image/GET_ALL_IMAGES';
 
+
 const userInfo = (user) => {
     return {
         type: GET_INFO,
@@ -11,17 +12,27 @@ const userInfo = (user) => {
     };
 };
 
-const getAllImagesAction = (images) => {
+const getAllImagesAction = (photos) => {
     return {
         type: GET_ALL_IMAGES,
-        images
+        photos
     };
+};
+
+export const deleteImage = (imageId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/images/${imageId}`, {
+        method: 'DELETE',
+    });
+    const photos = await response.json();
+
+    dispatch(getAllImagesAction(photos))
 };
 
 export const getAllImages = (userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/users/${userId}/images`);
     const photos = await response.json(); 
-    
+    dispatch(getAllImagesAction(photos));
+    return photos;
 }
 
 export const unfollowUser = (userId) => async (dispatch) => {
@@ -75,6 +86,10 @@ const userInfoReducer = (state=initialState, action) => {
             newState.followers = action.user.followers;
             newState.albums = action.user.albums;
             newState.photos = action.user.photos;
+            return newState;
+        case GET_ALL_IMAGES:
+            newState = Object.assign({}, state);
+            newState.photos = action.photos;
             return newState;
         default:
             return state;

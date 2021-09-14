@@ -8,7 +8,6 @@ import './Edit.css';
 function Photo({photo}) {
 
     const dispatch = useDispatch();
-
     const [caption, setCaption] = useState(photo.caption);
     const [cameraSettings, setCameraSettings] = useState(photo.cameraSettings);
     const [captionEditActive, setCaptionEditActive] = useState(false);
@@ -48,7 +47,7 @@ function Photo({photo}) {
                                     type="text" 
                                     value={caption} 
                                     onChange={(e) => setCaption(e.target.value)} 
-                                    placeHolder={caption || 'Caption'}
+                                    placeholder={caption || 'Caption'}
                                 />
                                 <button>
                                     <AiOutlineCheckCircle />
@@ -65,7 +64,7 @@ function Photo({photo}) {
                                     type="text" 
                                     value={cameraSettings}
                                     onChange={(e) => setCameraSettings(e.target.value)}   
-                                    placeHolder={cameraSettings || 'Camera Settings'} 
+                                    placeholder={cameraSettings || 'Camera Settings'} 
                                 />
                                 <button><AiOutlineCheckCircle /></button>
                             </form>

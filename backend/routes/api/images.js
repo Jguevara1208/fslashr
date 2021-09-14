@@ -55,8 +55,17 @@ router.patch('/:photoId', restoreUser, asyncHandler(async (req, res) => {
 
 router.delete('/:photoId', restoreUser, asyncHandler(async (req, res) => {
     const photoId = req.params.photoId;
+    const userId = req.user.id;
+
     const image = await Photo.findByPk(photoId);
     await image.destroy();
-    res.json('success')
+
+    const photos = await Photo.findAll({
+        where: { userId },
+        include: { model: User }
+    });
+
+
+    res.json(photos)
 }));
 module.exports = router;

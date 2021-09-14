@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteImage } from '../../../store/image';
+import { deleteImage } from '../../../store/userInfo';
 import { AiOutlineDelete } from 'react-icons/ai'
 
 function DeleteButton({ photoId }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
-
 
     const openMenu = () => {
         if (showMenu) return;

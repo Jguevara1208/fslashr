@@ -9,7 +9,7 @@ function ImageUpload() {
     const [image, setImage] = useState(null);
     const [caption, setCaption] = useState('');
     const [cameraSettings, setCameraSettings] = useState('');
-    const [userId, setUserId] =  useState(currentUserId);
+    const [userId] =  useState(currentUserId);
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch();

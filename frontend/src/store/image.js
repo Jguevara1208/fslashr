@@ -29,18 +29,6 @@ const editImageAction = (image) => {
     };
 };
 
-const deleteImageAction = () => {
-    return {
-        type: DELETE_IMAGE,
-    };
-};
-
-export const deleteImage = (imageId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/images/${imageId}`, {
-        method: 'DELETE',
-    });
-    dispatch(deleteImageAction());
-};
 
 export const editImage = (image) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${image.id}`, {
@@ -58,7 +46,6 @@ export const editImage = (image) => async (dispatch) => {
 
 export const addImage = (imageObj) => async (dispatch) => {
     const imageData = new FormData();
-    console.log(imageObj.image, 'imageObj.image')
     const { image, caption, cameraSettings, userId, albumId } = imageObj;
 
     if (imageObj) {
