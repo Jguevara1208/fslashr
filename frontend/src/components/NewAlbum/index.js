@@ -29,19 +29,19 @@ function NewAlbum() {
             photos: selectedPhotos
         };
 
-        // dispatch(createAlbum(album))
+        dispatch(createAlbum(album))
         history.push(`/users/${userId}/albums`)
     };
 
     const handleSelect = (e) => {
-        const imgUrl = e.target.id;
+        const photoId = e.target.id;
 
-        if (selectedPhotos.includes(imgUrl)) {
-            const index = selectedPhotos.indexOf(imgUrl)
+        if (selectedPhotos.includes(photoId)) {
+            const index = selectedPhotos.indexOf(photoId)
             const newArr = [...selectedPhotos.slice(0, index), ...selectedPhotos.slice(index +  1)]
             setSelectedPhotos(newArr)
         } else {
-            const newArr = [...selectedPhotos, imgUrl]
+            const newArr = [...selectedPhotos, photoId]
             setSelectedPhotos(newArr)
         };
     };
@@ -59,7 +59,7 @@ function NewAlbum() {
                 </label>
                 {availablePhotos && availablePhotos.map(photo => (
                     <div key={photo.id} onClick={handleSelect}>
-                        <AlbumPhotoAdd id={photo.imgUrl} photo={photo} onClick={handleSelect}/>
+                        <AlbumPhotoAdd photo={photo} onClick={handleSelect}/>
                     </div>
                 ))}
                 <button>Create Album</button>

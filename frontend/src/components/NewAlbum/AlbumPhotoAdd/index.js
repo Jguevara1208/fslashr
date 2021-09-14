@@ -12,13 +12,12 @@ function AlbumPhotoAdd({photo}) {
     return (
         <>
             <div 
-                id={photo.imgUrl} 
-                class={selected} 
+                id={photo.id} 
+                className={selected} 
                 style={{backgroundImage: `url('${photo.imgUrl}')`}}
                 onClick={handleSelected}
             >
-                {selected === 'selected' && <p>Photo will be added to Album</p> }
-                
+                {selected === 'selected' && <p>Photo will be added to Album</p> }   
             </div>
         </>
     );

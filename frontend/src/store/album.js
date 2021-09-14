@@ -1,4 +1,5 @@
-import { csrfFetch } from "./csrf";
+import { csrfFetch } from './csrf';
+import { addAlbumAction } from './userInfo';
 
 const GET_ALBUM = 'album/GET_ALBUM';
 const EDIT_ALBUM = 'album/EDIT_ALBUM';
@@ -86,12 +87,14 @@ export const createAlbum = (album) => async (dispatch) => {
     });
 
     const albumRes = await response.json();
+
     dispatch(createAlbumAction(albumRes));
     return album;
 }
 
 const initialState = {
     album: null,
+    banner: null,
     unusedPhotos: null,
 }
 
@@ -102,6 +105,8 @@ const albumReducer = (state=initialState, action) => {
         case GET_ALBUM:
             newState = Object.assign({}, state);
             newState.album = action.album;
+            let banner = newState.album[0];
+            newState.banner = banner;
             return newState;
         case EDIT_ALBUM:
             newState = Object.assign({}, state);
