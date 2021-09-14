@@ -19,6 +19,18 @@ router.get('/:albumId', restoreUser, asyncHandler( async (req, res) => {
     res.json(album)
 }))
 
+router.post('/', restoreUser, asyncHandler(async (req, res) => {
+    const { title, photos, userId } = req.body;
+    const newAlbum = await Album.create({userId, title});
+
+    photos.forEach(async photo => {
+        const photoDB = await Photo.findByPk(photo.id);
+        photoDB.update({ albumId: newAlbum.id})
+    })
+
+    res.json(newAlbum)
+}))
+
 // router.patch('/:id', restoreUser, asyncHandler( async (req, res) => {
 
 // }))
