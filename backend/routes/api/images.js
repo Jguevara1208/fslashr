@@ -1,9 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const {  requireAuth, restoreUser } = require('../../utils/auth');
-const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3')
-const { Photo, User, Favorite, Album, Follow, Comment} = require('../../db/models')
-const { Op } = require('sequelize');
+const { restoreUser } = require('../../utils/auth');
+const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
+const { Photo, User, Comment} = require('../../db/models');
 const router = express.Router();
 
 /*------------------------------------------------------------------------------------------------------------*/
@@ -12,15 +11,20 @@ const router = express.Router();
 
 
 router.post('/', restoreUser, singleMulterUpload("image"), asyncHandler(async (req, res) => {
-    const imgUrl = await singlePublicFileUpload(req.file)
-    const userId = req.user.id
+    const imgUrl = await singlePublicFileUpload(req.file);
+    const userId = req.user.id;
     let albumId;
-    const { caption, cameraSettings } = req.body
-    req.body.albumId === 'undefined' ? albumId = null : albumId = req.body.albumId
+    const { caption, cameraSettings } = req.body;
+    req.body.albumId === 'undefined' ? albumId = null : albumId = req.body.albumId;
 
-    const photo = await Photo.create({imgUrl, userId, albumId, caption, cameraSettings})
-    res.json(photo)
-}))
+    const photo = await Photo.create({imgUrl, userId, albumId, caption, cameraSettings});
+    res.json(photo);
+}));
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------Individual Images------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------*/
+
 
 router.get('/:photoId', restoreUser, asyncHandler(async (req, res) => {
     const photoId = req.params.photoId;
@@ -37,5 +41,22 @@ router.get('/:photoId', restoreUser, asyncHandler(async (req, res) => {
     });
 
     res.json(image)
-}))
+}));
+
+router.patch('/:photoId', restoreUser, asyncHandler(async (req, res) => {
+    const photoId = req.params.photoId;
+    const { caption, cameraSettings, albumId } = req.body;
+    const image = await Photo.findByPk(photoId);
+    await image.update({
+        caption, cameraSettings, albumId
+    })
+    res.json(image)
+}));
+
+router.delete('/:photoId', restoreUser, asyncHandler(async (req, res) => {
+    const photoId = req.params.photoId;
+    const image = await Photo.findByPk(photoId);
+    await image.destroy();
+    res.json('success')
+}));
 module.exports = router;

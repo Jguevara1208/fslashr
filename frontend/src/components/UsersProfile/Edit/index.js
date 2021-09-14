@@ -1,17 +1,26 @@
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
 import './Edit.css'
+import Photo from './Photo';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInfoThunk } from '../../../store/userInfo'
 
-function Edit({photos}) {
+function Edit() {
+    const dispatch = useDispatch()
+
+    const sessionPhotos = useSelector(state => state.currentUser.photos)
+    const userId = useSelector(state=> state.session.user.id)
+
+    const [photos, setPhotos] = useState(sessionPhotos)
+
+    useEffect(() => {
+        dispatch(getInfoThunk(userId))
+    }, [dispatch])
+
     return (
         <>
             {photos && photos.map(photo => (
-                <div className='photo-edit-container' key={photo.id}>
-                    <div className='edit-photo' style={{backgroundImage: `url('${photo.imgUrl}')`}}/>
-                    <p>{photo.caption}</p>
-                    <p>{photo.cameraSettings}</p>
-                    <AiOutlineEdit style={{fontSize: '25px', color: 'rgba(0, 0, 0, .4)'}}/>
-                    <AiOutlineDelete style={{fontSize: '25px', color: 'rgba(0, 0, 0, .4)'}}/>
-                </div>
+                <Photo photo={photo} />
             ))}
         </>
     );

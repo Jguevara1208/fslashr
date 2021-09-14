@@ -1,10 +1,8 @@
 import './UserProfileBanner.css';
-import { useSelector } from 'react-redux';
 import UserInfo from '../../UserInfo';
 
 function UserProfileBanner({data}) {
 
-    const sessionUserId = useSelector(state => state.session.user.id);
     const { photos, background } = data;
     const randomPhotoNum = Math.floor(Math.random() * photos);
     

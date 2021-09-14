@@ -4,7 +4,7 @@ import { getInfoThunk } from '../../store/userInfo'
 import { AiOutlineHeart, AiOutlineUserAdd} from 'react-icons/ai'
 import { BiComment } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
-import './HomePage.css'
+import './HomePage.css';
 
 function HomePage() {
 
@@ -22,9 +22,17 @@ function HomePage() {
             {feed && feed.map((photo) => (
                 <div className='feed' key={photo.id}>
                     <div className='card-top' >
-                        <Link to={`/users/${photo.User.id}`}><div className='avatar' style={{backgroundImage: `url('${photo.User.avatarUrl}')`}} /></Link>
+                        <Link to={`/users/${photo.User.id}`}>
+                            <div 
+                                className='avatar' 
+                                style={{backgroundImage: `url('${photo.User.avatarUrl}')`}} 
+                            />
+                        </Link>
                         <p>{photo.User.firstName} {photo.User.lastName}</p>
-                        <div className='feed-photo' style={{backgroundImage: `url('${photo.imgUrl}')`}} />
+                        <div 
+                            className='feed-photo' 
+                            style={{backgroundImage: `url('${photo.imgUrl}')`}} 
+                        />
                         <p>{photo.caption}</p>
                     </div>
                     <div className='card-bottom' >
@@ -38,7 +46,7 @@ function HomePage() {
                 </div>
             ))}
         </div>
-    )
-}
+    );
+};
 
 export default HomePage

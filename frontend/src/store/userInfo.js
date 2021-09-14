@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_INFO = 'userInfo/GET_INFO';
 
+const GET_ALL_IMAGES = 'image/GET_ALL_IMAGES';
+
 const userInfo = (user) => {
     return {
         type: GET_INFO,
@@ -9,6 +11,18 @@ const userInfo = (user) => {
     };
 };
 
+const getAllImagesAction = (images) => {
+    return {
+        type: GET_ALL_IMAGES,
+        images
+    };
+};
+
+export const getAllImages = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/${userId}/images`);
+    const photos = await response.json(); 
+    
+}
 
 export const unfollowUser = (userId) => async (dispatch) => {
     const body = { userToUnfollow: userId }

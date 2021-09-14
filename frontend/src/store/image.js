@@ -1,8 +1,12 @@
 import { csrfFetch } from './csrf';
 
-const ADD_IMAGE = 'photo/ADD_IMAGE';
+const ADD_IMAGE = 'image/ADD_IMAGE';
 
-const GET_IMAGE = 'photo/GET_IMAGE'
+const GET_IMAGE = 'image/GET_IMAGE';
+
+const EDIT_IMAGE = 'image/EDIT_IMAGE';
+
+const DELETE_IMAGE = 'image/DELETE_IMAGE';
 
 const addImageAction = (image) => {
     return {
@@ -18,6 +22,40 @@ const getImageAction = (image) => {
     };
 };
 
+const editImageAction = (image) => {
+    return {
+        type: EDIT_IMAGE,
+        image
+    };
+};
+
+const deleteImageAction = () => {
+    return {
+        type: DELETE_IMAGE,
+    };
+};
+
+export const deleteImage = (imageId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/images/${imageId}`, {
+        method: 'DELETE',
+    });
+    dispatch(deleteImageAction());
+};
+
+export const editImage = (image) => async (dispatch) => {
+    const response = await csrfFetch(`/api/images/${image.id}`, {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(image)
+    });
+
+    const newImage = await response.json();
+    dispatch(editImageAction(newImage));
+    return newImage;
+};
+
 export const addImage = (imageObj) => async (dispatch) => {
     const imageData = new FormData();
     console.log(imageObj.image, 'imageObj.image')
@@ -28,7 +66,7 @@ export const addImage = (imageObj) => async (dispatch) => {
         imageData.append('caption', caption);
         imageData.append('cameraSettings', cameraSettings);
         imageData.append('userId', userId);
-        imageData.append('albumId', albumId)
+        imageData.append('albumId', albumId);
     };
 
     const response = await csrfFetch('/api/images/', {
@@ -42,18 +80,18 @@ export const addImage = (imageObj) => async (dispatch) => {
     const imgResponse = await response.json();
     dispatch(addImageAction(image));
     return imgResponse;
-}
+};
 
 export const getImage = (imageId) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${imageId}`);
     const image = await response.json();
     dispatch(getImageAction(image));
     return image
-}
+};
 
 const initialState = {
     image: null
-}
+};
 
 const imageReducer = (state=initialState, action) => {
     let newState;
@@ -66,9 +104,16 @@ const imageReducer = (state=initialState, action) => {
             newState = Object.assign({}, state);
             newState.image = action.image;
             return newState;
+        case EDIT_IMAGE:
+            newState = Object.assign({}, state);
+            newState.image = action.image;
+            return newState;
+        case DELETE_IMAGE:
+            newState = Object.assign({}, state)
+            return newState
         default:
             return state;
-    }
-}
+    };
+};
 
 export default imageReducer;
