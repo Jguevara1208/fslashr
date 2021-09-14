@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './AlbumPhotoAdd.css'
 
-function AlbumPhotoAdd({photo}) {
+function AlbumPhotoAdd({photo, used}) {
 
     const [selected, setSelected] = useState('unSelected')
 

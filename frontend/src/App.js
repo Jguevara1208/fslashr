@@ -9,6 +9,7 @@ import AlbumPage from './components/AlbumPage';
 import ImageUpload from './components/ImageUpload';
 import ImagePage from './components/ImagePage';
 import NewAlbum from './components/NewAlbum'
+import EditAlbum from './components/EditAlbum'
 import * as sessionActions from './store/session';
 
 function App() {
@@ -32,10 +33,13 @@ function App() {
       )}
       {isLoaded && (
         <Switch>
-          <Route path='/albums/new'>
+          <Route exact path='/albums/new'>
             <NewAlbum />
           </Route>
-          <Route path='/albums/:albumId'>
+          <Route exact path='/albums/:albumId/edit'>
+            <EditAlbum />
+          </Route>
+          <Route exact path='/albums/:albumId'>
             <AlbumPage />
           </Route>
           <Route path='/users/:userId'>

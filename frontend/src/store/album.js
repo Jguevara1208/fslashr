@@ -1,5 +1,4 @@
 import { csrfFetch } from './csrf';
-import { addAlbumAction } from './userInfo';
 
 const GET_ALBUM = 'album/GET_ALBUM';
 const EDIT_ALBUM = 'album/EDIT_ALBUM';
@@ -56,8 +55,8 @@ export const getUnusedPhotos = (userId) => async (dispatch) => {
     dispatch(setUnusedPhotos(photos))
 }
 
-export const editAlbum = (album) => async (dispatch) => {
-    const response = await csrfFetch(`/api/albums/${album.id}`, {
+export const editAlbum = (albumId, album) => async (dispatch) => {
+    const response = await csrfFetch(`/api/albums/${albumId}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
@@ -65,19 +64,22 @@ export const editAlbum = (album) => async (dispatch) => {
         body: JSON.stringify(album)
     });
     const newAlbum = await response.json();
+    console.log(newAlbum, 'FROM THUNK')
+    
     dispatch(editAlbumAction(newAlbum));
     return newAlbum;
 }
 
 export const deleteAlbum = (albumId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/albums/${albumId}`);
+    const response = await csrfFetch(`/api/albums/${albumId}`, {
+        method: 'DELETE'
+    });
     const album = await response.json();
     dispatch(deleteAlbumAction(album));
     return album;
 }
 
 export const createAlbum = (album) => async (dispatch) => {
-
     const response = await csrfFetch(`/api/albums`, {
         method: 'POST',
         headers: {

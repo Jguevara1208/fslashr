@@ -7,21 +7,21 @@ import './NewAlbum.css';
 
 function NewAlbum() {
 
-    const dispatch = useDispatch()
-    const history = useHistory()
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const userId = useSelector(state => state?.session?.user?.id)
-    const availablePhotos = useSelector(state => state?.album?.unusedPhotos)
+    const userId = useSelector(state => state?.session?.user?.id);
+    const availablePhotos = useSelector(state => state?.album?.unusedPhotos);
 
     const [albumTitle, setAlbumTitle] = useState('');
     const [selectedPhotos, setSelectedPhotos] = useState([]);
 
     useEffect(() => {
-        dispatch(getUnusedPhotos(userId))
-    }, [dispatch])
+        dispatch(getUnusedPhotos(userId));
+    }, [dispatch]);
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         
         const album = {
             userId,
@@ -29,8 +29,8 @@ function NewAlbum() {
             photos: selectedPhotos
         };
 
-        dispatch(createAlbum(album))
-        history.push(`/users/${userId}/albums`)
+        dispatch(createAlbum(album));
+        history.push(`/users/${userId}/albums`);
     };
 
     const handleSelect = (e) => {
