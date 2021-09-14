@@ -27,11 +27,11 @@ function NewAlbum() {
             userId,
             title: albumTitle,
             photos: selectedPhotos
-        }
+        };
 
-        dispatch(createAlbum(album))
+        // dispatch(createAlbum(album))
         history.push(`/users/${userId}/albums`)
-    }
+    };
 
     const handleSelect = (e) => {
         const imgUrl = e.target.id;
@@ -62,6 +62,7 @@ function NewAlbum() {
                         <AlbumPhotoAdd id={photo.imgUrl} photo={photo} onClick={handleSelect}/>
                     </div>
                 ))}
+                <button>Create Album</button>
             </form>
         </>
     );
