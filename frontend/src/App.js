@@ -8,6 +8,7 @@ import UsersProfile from './components/UsersProfile';
 import AlbumPage from './components/AlbumPage';
 import ImageUpload from './components/ImageUpload';
 import ImagePage from './components/ImagePage';
+import NewAlbum from './components/NewAlbum'
 import * as sessionActions from './store/session';
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
       )}
       {isLoaded && (
         <Switch>
+          <Route path='/albums/new'>
+            <NewAlbum />
+          </Route>
           <Route path='/albums/:albumId'>
             <AlbumPage />
           </Route>

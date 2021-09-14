@@ -16,6 +16,7 @@ function Album() {
 
     return (
         <>
+            <Link to='/albums/new'>Create a new Album</Link>
             <div className='albums-container'>
                 {currentUserAlbums && currentUserAlbums.map( album => (
                     <div className='album-card' key={album.id}>
