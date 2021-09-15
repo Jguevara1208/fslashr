@@ -119,7 +119,7 @@ const imageReducer = (state=initialState, action) => {
             return newState
         case ADD_COMMENT:
             newState = Object.assign({}, state);
-            newState.image.Comments = [...newState.image.Comments, action.comment]
+            newState.image.Comments = [action.comment, ...newState.image.Comments]
             return newState;
         default:
             return state;
