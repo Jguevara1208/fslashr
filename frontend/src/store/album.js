@@ -64,7 +64,6 @@ export const editAlbum = (albumId, album) => async (dispatch) => {
         body: JSON.stringify(album)
     });
     const newAlbum = await response.json();
-    console.log(newAlbum, 'FROM THUNK')
     
     dispatch(editAlbumAction(newAlbum));
     return newAlbum;

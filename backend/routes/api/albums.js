@@ -49,14 +49,12 @@ router.patch('/:albumId', restoreUser, asyncHandler( async (req, res) => {
         const photo = photoIdsToRemove[i];
         const photoDB = await Photo.findByPk(photo);
         await photoDB.update({ albumId: null });
-        console.log(photoDB.albumId)
     };
 
     for(let i = 0; i < photoIdsToAdd.length; i++) {
         const photo = photoIdsToAdd[i];
         const photoDB = await Photo.findByPk(photo);
         await photoDB.update({albumId: newAlbum.id });
-        console.log(photoDB.albumId)
     }
 
     const newAlbumPhotos = await Photo.findAll({

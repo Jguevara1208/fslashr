@@ -3,10 +3,9 @@ import { csrfFetch } from './csrf';
 const ADD_IMAGE = 'image/ADD_IMAGE';
 
 const GET_IMAGE = 'image/GET_IMAGE';
-
 const EDIT_IMAGE = 'image/EDIT_IMAGE';
-
 const DELETE_IMAGE = 'image/DELETE_IMAGE';
+const ADD_COMMENT = 'image/ADD_COMMENT';
 
 const addImageAction = (image) => {
     return {
@@ -29,6 +28,26 @@ const editImageAction = (image) => {
     };
 };
 
+const addCommentAction = (comment) => {
+    return {
+        type: ADD_COMMENT,
+        comment
+    };
+};
+
+export const addComment = (imageId, comment) => async (dispatch) => {
+
+    const response = await csrfFetch(`/api/images/${imageId}/comments`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(comment)
+    });
+
+    const newComment = await response.json();
+    dispatch(addCommentAction(newComment));
+};
 
 export const editImage = (image) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${image.id}`, {
@@ -96,8 +115,12 @@ const imageReducer = (state=initialState, action) => {
             newState.image = action.image;
             return newState;
         case DELETE_IMAGE:
-            newState = Object.assign({}, state)
+            newState = Object.assign({}, state);
             return newState
+        case ADD_COMMENT:
+            newState = Object.assign({}, state);
+            newState.image.Comments = [...newState.image.Comments, action.comment]
+            return newState;
         default:
             return state;
     };

@@ -68,4 +68,24 @@ router.delete('/:photoId', restoreUser, asyncHandler(async (req, res) => {
 
     res.json(photos)
 }));
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------Image Comments---------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------*/
+
+router.post('/:imageId/comments', restoreUser, asyncHandler(async (req, res) => {
+    const { comment, photoId, userId } = req.body;
+
+    const newComment = await Comment.create({
+        comment, userId, photoId
+    });
+
+    const returnComment = await Comment.findByPk(newComment.id, {
+        include: { model: User }
+    });
+
+    res.json(returnComment);
+    
+}));
+
 module.exports = router;

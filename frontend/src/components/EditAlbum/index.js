@@ -69,7 +69,6 @@ function EditAlbum() {
         e.preventDefault()
 
         setTitleEdit(!titleEdit)
-        console.log(albumTitle)
     }
 
     
