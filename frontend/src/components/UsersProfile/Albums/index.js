@@ -10,6 +10,7 @@ function Album() {
     const dispatch = useDispatch();
     const { userId } = useParams();
     const currentUserAlbums = useSelector(state => state.currentUser.albums)
+    const currentUser = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(getInfoThunk(userId));
@@ -18,7 +19,9 @@ function Album() {
 
     return (
         <>
-            <Link to='/albums/new'>Create a new Album</Link>
+            {+userId === currentUser?.id && (
+                <Link to='/albums/new'>Create a new Album</Link>
+            )}
             <div className='albums-container'>
                 {currentUserAlbums && currentUserAlbums.map( album => (
                     <div className='album-card' key={album.id}>

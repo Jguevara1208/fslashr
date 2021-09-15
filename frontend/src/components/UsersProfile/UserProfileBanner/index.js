@@ -3,13 +3,12 @@ import UserInfo from '../../UserInfo';
 
 function UserProfileBanner({data}) {
 
-    const { photos, background } = data;
-    const randomPhotoNum = Math.floor(Math.random() * photos);
+    const { photos } = data;
     
     return (
         <>
             {data && (
-                <div className='banner' style={{ backgroundImage: `url('${background[randomPhotoNum].imgUrl}')` }} >
+                <div className='banner' >
                     <UserInfo data={data}/>
                     <p>{photos} Photos</p>
                 </div>

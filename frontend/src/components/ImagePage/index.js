@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { BiArrowBack, BiComment } from 'react-icons/bi';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { getFavorites } from '../../store/favorites';
+import FavoriteButton from '../FavoriteButton';
 import CommentSection from './CommentSection';
 import UserInfo from '../UserInfo';
 
@@ -19,6 +20,7 @@ function ImagePage() {
     const image = useSelector(state => state.image.image);
     const userId = useSelector(state => state?.session?.user?.id)
     const comments = useSelector(state => state?.image?.image?.Comments)
+    const favorites = useSelector(state => state.favorites.favorites)
 
     const data = {
         userInfo: image?.User,
@@ -36,6 +38,7 @@ function ImagePage() {
 
     useEffect(() => {
         dispatch(getImage(photoId));
+        dispatch(getFavorites(userId))
     }, [dispatch]);
 
     
@@ -57,7 +60,7 @@ function ImagePage() {
                             <p>comments</p>
                         </div>
                         <BiComment style={{ fontSize: '50', color: 'rgba(0, 0, 0, .4)' }} />
-                        <AiOutlineHeart style={{ fontSize: '50', color: 'rgba(0, 0, 0, .4)' }} />
+                        <FavoriteButton photoId={photoId} favorites={favorites}/>
                     </div>
                     <CommentSection commentsInfo={commentInfo}/>
                 </>

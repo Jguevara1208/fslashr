@@ -1,19 +1,23 @@
 import {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getInfoThunk } from '../../store/userInfo'
-import { AiOutlineHeart, AiOutlineUserAdd} from 'react-icons/ai'
+import { getInfoThunk } from '../../store/userInfo';
+import { AiOutlineUserAdd } from 'react-icons/ai';
+import FavoriteButton from '../FavoriteButton';
 import { BiComment } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
+import { getFavorites } from '../../store/favorites';
 import './HomePage.css';
 
 function HomePage() {
 
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+    const favorites = useSelector(state => state.favorites.favorites)
     const feed = useSelector(state => state.currentUser.feed)
 
     useEffect(() => {
         dispatch(getInfoThunk(sessionUser?.id))
+        dispatch(getFavorites(sessionUser?.id))
     }, [dispatch, sessionUser?.id]);
 
     return (
@@ -38,7 +42,7 @@ function HomePage() {
                     <div className='card-bottom' >
                         <p>{photo.cameraSettings}</p>
                         <div className='card-icons'>
-                            <AiOutlineHeart style={{fontSize: '30', color: 'rgba(0, 0, 0, .4)'}} />
+                            <FavoriteButton photoId={photo.id} favorites={favorites}/>
                             <BiComment style={{fontSize: '30', color: 'rgba(0, 0, 0, .4)'}} />
                             <AiOutlineUserAdd style={{fontSize: '30', color: 'rgba(0, 0, 0, .4)'}} />
                         </div>

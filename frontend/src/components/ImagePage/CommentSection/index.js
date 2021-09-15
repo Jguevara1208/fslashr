@@ -39,7 +39,7 @@ function CommentSection({ commentsInfo }) {
                         <button><GrSend /></button>
                     </form>
                     {comments?.map(comment => (
-                        <Comment comment={comment} />
+                        <Comment comment={comment} key={comment.id}/>
                     ))}
                 </div>
             )}

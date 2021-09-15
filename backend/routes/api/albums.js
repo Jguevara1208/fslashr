@@ -76,6 +76,7 @@ router.delete('/:albumId', restoreUser, asyncHandler( async (req, res) => {
 
     const album = await Album.findByPk(albumId);
     await album.destroy()
+    res.json(albumId)
 }))
 
 module.exports = router;

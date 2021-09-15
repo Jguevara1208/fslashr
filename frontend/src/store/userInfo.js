@@ -1,15 +1,21 @@
 import { csrfFetch } from "./csrf";
 
 const GET_INFO = 'userInfo/GET_INFO';
-
 const GET_ALL_IMAGES = 'image/GET_ALL_IMAGES';
-
 const ADD_ALBUM = 'album/ADD_ALBUM';
+const DELETE_ALBUM = 'album/DELETE_ALBUM'
 
 export const addAlbumAction = (album) => {
     return {
         type: ADD_ALBUM,
         album
+    };
+};
+
+const deleteAlbumAction = (albumId) => {
+    return {
+        type: DELETE_ALBUM,
+        albumId
     };
 };
 
@@ -26,6 +32,15 @@ const getAllImagesAction = (photos) => {
         photos
     };
 };
+
+export const deleteAlbum = (albumId) => async (dispatch) => {
+    const response  = await csrfFetch(`/api/albums/${albumId}`, {
+        method: 'DELETE'
+    });
+    const returnedAlbumId = await response.json()
+
+    dispatch(deleteAlbumAction(returnedAlbumId));
+}
 
 export const deleteImage = (imageId) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${imageId}`, {
@@ -104,6 +119,11 @@ const userInfoReducer = (state=initialState, action) => {
             let newAlbums = [...newState.albums, action.album];
             newState.albums = newAlbums;
             return newState
+        case DELETE_ALBUM:
+            newState = Object.assign({}, state);
+            const albums = newState.albums.filter(album => album.id !== +action.albumId );
+            newState.albums = albums;
+            return newState;
         default:
             return state;
     };

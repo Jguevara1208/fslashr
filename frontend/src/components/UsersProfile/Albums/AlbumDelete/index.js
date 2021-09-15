@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteAlbum } from '../../../../store/album';
+import { deleteAlbum } from '../../../../store/userInfo';
 import { AiOutlineDelete } from 'react-icons/ai'
 
 function AlbumDelete({ albumId }) {
@@ -26,7 +26,6 @@ function AlbumDelete({ albumId }) {
     }, [showMenu]);
 
     const deleteAlbumHandler = (e) => {
-        e.preventDefault();
         dispatch(deleteAlbum(albumId));
     };
 

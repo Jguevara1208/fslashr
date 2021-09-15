@@ -129,6 +129,7 @@ router.post('/follow', requireAuth, asyncHandler(async (req, res) => {
         userId,
         followingId
     });
+    res.json('ok')
 }));
 
 router.delete('/follow', requireAuth, asyncHandler(async (req, res) => {
@@ -142,7 +143,46 @@ router.delete('/follow', requireAuth, asyncHandler(async (req, res) => {
     });
 
     follow.destroy();
+    res.json('ok')
 }));
 
+/*-----------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------Favorites------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------*/
+
+router.get('/:userId/favorites', restoreUser, asyncHandler(async (req, res) => {
+    const userId = req.params.userId;
+    const favorites = await Favorite.findAll({
+        where: { userId }
+    });
+
+    res.json(favorites);
+}))
+
+router.post('/:userId/favorites', restoreUser, asyncHandler(async (req, res) => {
+    const userId = req.params.userId;
+    const { photoId } = req.body;
+
+    const favorite = await Favorite.create({
+        photoId,
+        userId
+    });
+
+    res.json(favorite);
+}))
+
+router.delete('/:userId/favorites', restoreUser, asyncHandler(async (req, res) => {
+    const userId = req.params.userId;
+    const { photoId } = req.body;
+    const follow = await Favorite.findOne({
+        where: {
+            [Op.and] : [{userId}, {photoId}]
+        }
+    });
+
+    await follow.destroy();
+
+    res.json(photoId);
+}))
 
 module.exports = router;

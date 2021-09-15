@@ -2,7 +2,6 @@ import { csrfFetch } from './csrf';
 
 const GET_ALBUM = 'album/GET_ALBUM';
 const EDIT_ALBUM = 'album/EDIT_ALBUM';
-const DELETE_ALBUM = 'album/DELETE_ALBUM';
 const CREATE_ALBUM = 'album/CREATE_ALBUM';
 const UNUSED_PHOTOS = 'album/UNUSED_PHOTOS';
 
@@ -17,13 +16,6 @@ const setAlbumAction = (album) => {
 const editAlbumAction = (album) => {
     return {
         type: EDIT_ALBUM,
-        album
-    };
-};
-
-const deleteAlbumAction = (album) => {
-    return {
-        type: DELETE_ALBUM,
         album
     };
 };
@@ -69,15 +61,6 @@ export const editAlbum = (albumId, album) => async (dispatch) => {
     return newAlbum;
 }
 
-export const deleteAlbum = (albumId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/albums/${albumId}`, {
-        method: 'DELETE'
-    });
-    const album = await response.json();
-    dispatch(deleteAlbumAction(album));
-    return album;
-}
-
 export const createAlbum = (album) => async (dispatch) => {
     const response = await csrfFetch(`/api/albums`, {
         method: 'POST',
@@ -116,9 +99,6 @@ const albumReducer = (state=initialState, action) => {
         case CREATE_ALBUM:
             newState = Object.assign({}, state);
             newState.album = action.album;
-            return newState;
-        case DELETE_ALBUM:
-            newState = initialState;
             return newState;
         case UNUSED_PHOTOS:
             newState = Object.assign({}, state);

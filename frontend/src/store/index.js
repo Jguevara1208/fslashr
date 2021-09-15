@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import userInfoReducer from './userInfo';
 import albumReducer from './album';
 import imageReducer from './image';
+import favoriteReducer from './favorites'
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     currentUser: userInfoReducer,
     album: albumReducer,
-    image: imageReducer
+    image: imageReducer,
+    favorites: favoriteReducer
 })
 
 let enhancer;
