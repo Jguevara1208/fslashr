@@ -1,5 +1,7 @@
+import splash from "./SplashPage.module.css"
+
 const logo = (
-<svg className='logo' width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg className={splash.logo} width="85" height="85" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="40.3906" cy="40.3907" r="38.5" transform="rotate(-92.8875 40.3906 40.3907)" fill="white"/>
 <path d="M65.3459 35.6188C66.9571 42.4653 66.6081 46.473 62.3978 54.1811C59.0388 44.9599 54.8359 40.3266 46.2807 31.2576C53.3668 31.768 57.3707 32.1585 65.3459 35.6188Z" fill="#9FEDD7"/>
 <path d="M47.2868 65.0879C50.3933 55.7287 51.5182 49.7514 51.6125 38.7883C57.0813 45.4812 59.456 49.1955 61.2992 54.9582C59.6548 58.0782 57.8761 60.0251 55.6079 61.5004C53.4186 62.9244 50.7622 63.9175 47.2868 65.0879Z" stroke="#EDEAE5" strokeWidth="0.6"/>

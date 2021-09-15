@@ -58,7 +58,7 @@ export const deleteFavorite = (userId, photoId) => async(dispatch) => {
         },
         body: JSON.stringify(body)
     });
-    const photo = await response.json();
+    await response.json();
     
     dispatch(deleteFavoriteAction(photoId))
 }

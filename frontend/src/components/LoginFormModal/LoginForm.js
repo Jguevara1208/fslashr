@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
+import formModal from './LoginForm.module.css'
+import logo from './modalLogo'
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -24,31 +26,30 @@ function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <label>
+        <form className={formModal.form} onSubmit={handleSubmit}>
+            {logo}
+            <h3 className={formModal.welcome}>Welcome Back</h3>
+            <label className={formModal.label}>
                 Username or Email
                 <input
                     type="text"
                     value={credential}
                     onChange={(e) => setCredential(e.target.value)}
+                    className={formModal.input}
                     required
                 />
             </label>
-            <label>
+            <label className={formModal.label} >
                 Password
                 <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className={formModal.input}
                     required
                 />
             </label>
-            <button type="submit">Log In</button>
+            <button className={formModal.button}>Log In</button>
         </form>
     );
 }

@@ -1,0 +1,69 @@
+.button {
+    background-color: white;
+    border: none;
+    width: 7.3rem;
+    height: 3rem;
+    font-size: 18px;
+    font-weight:lighter
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logIn {
+    font-size: 27px;
+    border: none;
+    background-color: white;
+    color: rgba(0, 0, 0, .6);
+    margin-bottom: 5px;
+}
+
+.buttonContainer {
+    width: 95.5%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+    padding: 50px 50px;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+    text-align: left;
+    font-weight: lighter;
+    color: rgba(0, 0, 0, .6);
+}
+
+h3 {
+    text-align: center;
+}
+
+.welcome {
+    color:rgba(0, 0, 0, .6);
+    font-weight: lighter;
+}
+
+.buttonSignup {
+    background-color: white;
+    border: 4px solid #026670;
+    width: 7rem;
+    height: 2.5rem;
+    color: #026670;
+}
+
+.input {
+    border: none;
+    border-bottom: 3px solid #026670;
+}
