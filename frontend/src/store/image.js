@@ -5,7 +5,8 @@ const ADD_IMAGE = 'image/ADD_IMAGE';
 const GET_IMAGE = 'image/GET_IMAGE';
 const EDIT_IMAGE = 'image/EDIT_IMAGE';
 const DELETE_IMAGE = 'image/DELETE_IMAGE';
-const ADD_COMMENT = 'image/ADD_COMMENT';
+const ADD_COMMENT = 'comment/ADD_COMMENT';
+const DELETE_COMMENT = 'comment/DELETE_COMMENT';
 
 const addImageAction = (image) => {
     return {
@@ -34,6 +35,21 @@ const addCommentAction = (comment) => {
         comment
     };
 };
+
+const deleteCommentAction = (commentId) => {
+    return {
+        type: DELETE_COMMENT,
+        commentId
+    };
+};
+
+export const deleteComment = (commentId) => async (dispatch) => {
+    await csrfFetch(`/api/images/comments/${commentId}`, {
+        method: 'DELETE'
+    });
+
+    dispatch(deleteCommentAction(commentId));
+}
 
 export const addComment = (imageId, comment) => async (dispatch) => {
 
@@ -120,6 +136,11 @@ const imageReducer = (state=initialState, action) => {
         case ADD_COMMENT:
             newState = Object.assign({}, state);
             newState.image.Comments = [action.comment, ...newState.image.Comments]
+            return newState;
+        case DELETE_COMMENT:
+            newState = Object.assign({}, state);
+            const comments = newState.image.Comments.filter(comment => comment.id !== action.commentId);
+            newState.image.Comments = comments;
             return newState;
         default:
             return state;

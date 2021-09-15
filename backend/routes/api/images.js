@@ -88,4 +88,13 @@ router.post('/:imageId/comments', restoreUser, asyncHandler(async (req, res) => 
     
 }));
 
+router.delete('/comments/:commentId', restoreUser, asyncHandler(async (req, res) => {
+    const commentId = req.params.commentId;
+
+    const comment = await Comment.findByPk(commentId);
+    await comment.destroy()
+
+    res.json(commentId)
+}))
+
 module.exports = router;

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getInfoThunk} from '../../../store/userInfo';
-import { useParams, Link, Route} from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai'
 import AlbumDelete from './AlbumDelete';
 import './Albums.css'

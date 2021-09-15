@@ -1,12 +1,12 @@
 import { getImage } from '../../store/image';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { BiArrowBack, BiComment } from 'react-icons/bi';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { GrSend } from 'react-icons/gr';
-import { addComment } from '../../store/image';
+import CommentSection from './CommentSection';
 import UserInfo from '../UserInfo';
+
 import './ImagePage.css'
 
 function ImagePage() {
@@ -28,33 +28,17 @@ function ImagePage() {
         comments
     }
 
-    const [comment, setComment] = useState('')
-
+    const commentInfo = {
+        photoId,
+        userId,
+        comments
+    }
 
     useEffect(() => {
         dispatch(getImage(photoId));
     }, [dispatch]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const newComment = {
-            comment: comment,
-            photoId,
-            userId,
-        };
-
-        dispatch(addComment(photoId, newComment));
-        setComment('');
-    };
-
-    const formatDate = (date) => {
-        const newDate = new Date(date)
-        const month = newDate.getMonth() + 1;
-        const day = newDate.getDay();
-        const formattedDate = `${month}-${day}`
-        return formattedDate
-    }
+    
 
     return (
         <>
@@ -75,24 +59,7 @@ function ImagePage() {
                         <BiComment style={{ fontSize: '50', color: 'rgba(0, 0, 0, .4)' }} />
                         <AiOutlineHeart style={{ fontSize: '50', color: 'rgba(0, 0, 0, .4)' }} />
                     </div>
-                    <div>
-                        <form onSubmit={handleSubmit}>
-                            <textarea 
-                                placeholder='Share your thoughts...' 
-                                value={comment}
-                                onChange={(e) => setComment(e.target.value)}
-                            />
-                            <button><GrSend /></button>
-                        </form>
-                        {comments?.map(comment => (
-                            <div>
-                                <div className='comment-avatar' style={{ backgroundImage: `url('${comment.User.avatarUrl}')`}} />
-                                <p>{comment.User.username}</p>
-                                <p>{formatDate(comment.createdAt)}</p>
-                                <p>{comment.comment}</p>
-                            </div>
-                        ))}
-                    </div>
+                    <CommentSection commentsInfo={commentInfo}/>
                 </>
                 
             )}
