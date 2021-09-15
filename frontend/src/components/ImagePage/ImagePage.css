@@ -4,3 +4,11 @@
     background-position: center;
     background-size: cover;
 }
+
+.comment-avatar {
+    width: 1.7em;
+    height: 1.7em;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+}
