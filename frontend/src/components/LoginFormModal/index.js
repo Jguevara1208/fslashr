@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
-import login from './LoginForm.module.css'
+import form from './LoginForm.module.css'
 import { AiOutlineLogin } from 'react-icons/ai'
 
 function LoginFormModal() {
@@ -9,7 +9,7 @@ function LoginFormModal() {
 
     return (
         <>
-            <button className={login.logIn} onClick={() => setShowModal(true)}>
+            <button className={form.logIn} onClick={() => setShowModal(true)}>
                 <AiOutlineLogin/>
             </button>
             {showModal && (

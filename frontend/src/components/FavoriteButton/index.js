@@ -6,7 +6,7 @@ import { addFavorite, deleteFavorite } from '../../store/favorites';
 function FavoriteButton({photoId, favorites}) {
     const dispatch = useDispatch();
 
-    const userId = useSelector(state => state.session.user.id);
+    const userId = useSelector(state => state?.session?.user?.id);
 
     const [favorited, setFavorited] = useState(false);
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
-import formModal from './LoginForm.module.css'
+import form from './LoginForm.module.css'
 import logo from './modalLogo'
 
 function LoginForm() {
@@ -26,30 +26,20 @@ function LoginForm() {
     };
 
     return (
-        <form className={formModal.form} onSubmit={handleSubmit}>
+        <form className={form.form} onSubmit={handleSubmit}>
             {logo}
-            <h3 className={formModal.welcome}>Welcome Back</h3>
-            <label className={formModal.label}>
-                Username or Email
-                <input
-                    type="text"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
-                    className={formModal.input}
-                    required
-                />
-            </label>
-            <label className={formModal.label} >
-                Password
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={formModal.input}
-                    required
-                />
-            </label>
-            <button className={formModal.button}>Log In</button>
+            <h3 className={form.welcome}>Welcome Back</h3>
+            <div className={form.standardInput}>
+                <input className={form.input} type="text" name='username' placeholder=' ' value={credential} onChange={(e) => setCredential(e.target.value)} required/>
+                <label className={form.label} htmlFor="username" >Username</label>
+                <span className={form.underline} ></span>
+            </div>
+            <div className={form.standardInput}>
+                <input className={form.input} type="password" name='password' placeholder=' ' value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <label className={form.label} htmlFor="pasword" >Password</label>
+                <span className={form.underline} ></span>
+            </div>
+            <button className={form.button} >Log In</button>
         </form>
     );
 }

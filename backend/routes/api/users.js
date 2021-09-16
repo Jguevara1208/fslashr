@@ -88,7 +88,8 @@ router.get('/:userId/info', restoreUser, asyncHandler(async (req, res) => {
 
     const feed = await Photo.findAll({
         include: [User], 
-        where: { userId: userFollowingIds }
+        where: { userId: userFollowingIds},
+        limit: 50
     });
 
     res.json({ feed, info, favorites, followings, followers, albums, photos });

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as sessionAction from '../../store/session';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import formModal from './SignupForm.module.css';
+import form from '../LoginFormModal/LoginForm.module.css'
 import logo from '../LoginFormModal/modalLogo'
 
 function SignupFormPage() {
@@ -46,80 +46,101 @@ function SignupFormPage() {
     };
 
     return (
-        <form className={formModal.form} onSubmit={handleSubmit}>
+        <form className={form.SignUpform} onSubmit={handleSubmit}>
             {logo}
-            <h3 className={formModal.welcome}> Sign up for f/r</h3>
-            <label className={formModal.label}>
-                First Name
+            <h3 className={form.welcome}> Sign up for f/r</h3>
+            <div className={form.standardInput}>
                 <input
-                    className={formModal.input}
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    required
+                    className={form.input} 
+                    type="text" 
+                    name='firstName' 
+                    placeholder=' ' 
+                    value={firstName} 
+                    onChange={(e) => setFirstName(e.target.value)} 
+                    required 
                 />
-            </label>
-            <label className={formModal.label}>
-                Last Name
+                <label className={form.label} htmlFor="firstName" >first Name</label>
+                <span className={form.underline} ></span>
+            </div>
+            <div className={form.standardInput}>
                 <input
-                    className={formModal.input}
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
+                    className={form.input} 
+                    type="text" 
+                    name='lastName' 
+                    placeholder=' ' 
+                    value={lastName} 
+                    onChange={(e) => setLastName(e.target.value)} 
+                    required 
                 />
-            </label>
-            <label className={formModal.label}>
-                Username
+                <label className={form.label} htmlFor="lastName" >Last Name</label>
+                <span className={form.underline} ></span>
+            </div>
+            <div className={form.standardInput}>
                 <input
-                    className={formModal.input}
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
+                    className={form.input} 
+                    type="text" 
+                    name='username' 
+                    placeholder=' ' 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    required 
                 />
-            </label>
-            <label className={formModal.label}>
-                Email
+                <label className={form.label} htmlFor="username" >Username</label>
+                <span className={form.underline} ></span>
+            </div>
+            <div className={form.standardInput}>
                 <input
-                    className={formModal.input}
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
+                    className={form.input} 
+                    type="email" 
+                    name='email' 
+                    placeholder=' ' 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    required 
                 />
-            </label>
-            <label className={formModal.label}>
-                Avatar Url
+                <label className={form.label} htmlFor="email" >Email</label>
+                <span className={form.underline} ></span>
+            </div>
+            <div className={form.standardInput}>
                 <input
-                    className={formModal.input}
-                    type="text"
-                    value={avatarUrl}
-                    onChange={(e) => setAvatarUrl(e.target.value)}
-                    required
+                    className={form.input} 
+                    type="text" 
+                    name='avatarUrl' 
+                    placeholder=' ' 
+                    value={avatarUrl} 
+                    onChange={(e) => setAvatarUrl(e.target.value)} 
+                    required 
                 />
-            </label>
-            <label className={formModal.label}>
-                Short Biography
+                <label className={form.label} htmlFor="avatarUrl" >Avatar Url</label>
+                <span className={form.underline} ></span>
+            </div>
+            <div className={form.standardInput}>
                 <input
-                    className={formModal.input}
-                    type="text"
-                    value={bio}
-                    onChange={(e) => setBio(e.target.value)}
-                    required
+                    className={form.input} 
+                    type="text" 
+                    name='bio' 
+                    placeholder=' ' 
+                    value={bio} 
+                    onChange={(e) => setBio(e.target.value)} 
+                    required 
                 />
-            </label>
-            <label className={formModal.label}>
-                Password
+                <label className={form.label} htmlFor="bio" >Short Biography</label>
+                <span className={form.underline} ></span>
+            </div>
+            <div className={form.standardInput}>
                 <input
-                    className={formModal.input}
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
+                    className={form.input} 
+                    type="password" 
+                    name='password' 
+                    placeholder=' ' 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    required 
                 />
-            </label>
-            <button className={formModal.buttonSignup}>Sign Up</button>
+                <label className={form.label} htmlFor="password" >Password</label>
+                <span className={form.underline} ></span>
+            </div>
+            <button className={form.button}>Sign Up</button>
         </form>
     )
 }

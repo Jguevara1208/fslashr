@@ -11,19 +11,21 @@ import './HomePage.css';
 function HomePage() {
 
     const dispatch = useDispatch()
-    const sessionUser = useSelector(state => state.session.user)
-    const favorites = useSelector(state => state.favorites.favorites)
-    const feed = useSelector(state => state.currentUser.feed)
+    const sessionUser = useSelector(state => state?.session?.user)
+    const favorites = useSelector(state => state?.favorites?.favorites)
+    const feed = useSelector(state => state?.currentUser?.feed)
 
     useEffect(() => {
-        dispatch(getInfoThunk(sessionUser?.id))
-        dispatch(getFavorites(sessionUser?.id))
-    }, [dispatch, sessionUser?.id]);
+        if (sessionUser) {
+            dispatch(getInfoThunk(sessionUser?.id))
+            dispatch(getFavorites(sessionUser?.id))
+        }
+    }, [dispatch, sessionUser]);
 
     return (
         <div>
             <p>Activity</p>
-            {feed && feed.map((photo) => (
+            {sessionUser && feed?.map((photo) => (
                 <div className='feed' key={photo.id}>
                     <div className='card-top' >
                         <Link to={`/users/${photo.User.id}`}>
@@ -33,10 +35,12 @@ function HomePage() {
                             />
                         </Link>
                         <p>{photo.User.firstName} {photo.User.lastName}</p>
-                        <div 
-                            className='feed-photo' 
-                            style={{backgroundImage: `url('${photo.imgUrl}')`}} 
-                        />
+                        <Link to={`/images/${photo.id}`}>
+                            <div 
+                                className='feed-photo' 
+                                style={{backgroundImage: `url('${photo.imgUrl}')`}} 
+                            />
+                        </Link>
                         <p>{photo.caption}</p>
                     </div>
                     <div className='card-bottom' >
