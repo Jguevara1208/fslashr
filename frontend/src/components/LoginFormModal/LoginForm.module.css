@@ -13,6 +13,7 @@
     position: absolute;
     right: 5%;
     top: 1em;
+    z-index: 100;
 }
 
 .buttonContainer {

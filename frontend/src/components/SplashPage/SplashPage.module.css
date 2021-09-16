@@ -1,22 +1,67 @@
 .photo {
+    position: absolute;
     background-position: center;
     background-size: cover;
+    z-index: 2;
     width: 100vw;
     height: 100vh;
+    animation-name: fadeOut;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: 5s;
+    animation-duration: 1s;
 }
+
+.nextPhoto {
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    animation-name: fadeIn;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: 5s;
+    animation-duration: 1s;
+}
+
+.restOfPhotos {
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@keyframes  fadeOut {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+
 
 .logo {
     position: absolute;
     top: 10px;
     left: 50%;
     transform: translate(-50%, 0%);
+    z-index: 100;
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
 }
 
 .content {
@@ -25,6 +70,7 @@
     row-gap: 30px;
     align-items: center;
     position: absolute;
+    z-index: 100;
     top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
