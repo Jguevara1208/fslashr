@@ -1,8 +1,17 @@
+.html {
+    width: 100%;
+}
+
 .app {
-    
     font-family: 'Krub', serif;
+    width: 100%;
 }
 
 button {
     font-family: 'Krub', serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
