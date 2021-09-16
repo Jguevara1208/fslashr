@@ -9,11 +9,9 @@ function LoginFormModal() {
 
     return (
         <>
-            <div className={login.buttonContainer}>
-                <button className={login.logIn} onClick={() => setShowModal(true)}>
-                    <AiOutlineLogin/>
-                </button>
-            </div>
+            <button className={login.logIn} onClick={() => setShowModal(true)}>
+                <AiOutlineLogin/>
+            </button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <LoginForm />

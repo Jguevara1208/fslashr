@@ -48,7 +48,7 @@ function SignupFormPage() {
     return (
         <form className={formModal.form} onSubmit={handleSubmit}>
             {logo}
-            <h3 className={formModal.welcome}> Welcome</h3>
+            <h3 className={formModal.welcome}> Sign up for f/r</h3>
             <label className={formModal.label}>
                 First Name
                 <input
