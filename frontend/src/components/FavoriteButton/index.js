@@ -21,7 +21,6 @@ function FavoriteButton({photoId, favorites}) {
             setFavorited(!favorited);
             dispatch(addFavorite(userId, photoId));
         } else {
-            console.log('I"M IN THE ELSE STATEMENT')
             setFavorited(!favorited);
             dispatch(deleteFavorite(userId, photoId));
         };
