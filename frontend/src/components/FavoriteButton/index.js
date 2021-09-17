@@ -2,6 +2,7 @@ import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavorite, deleteFavorite } from '../../store/favorites';
+import favs from './FavoriteButton.module.css'
 
 function FavoriteButton({photoId, favorites}) {
     const dispatch = useDispatch();
@@ -30,9 +31,9 @@ function FavoriteButton({photoId, favorites}) {
         <>
             {favorited 
                 ? 
-                    <button onClick={toggleFavorite} > <AiTwotoneHeart /></button>
+                    <button className={`${favs.button} ${favs.active}`} onClick={toggleFavorite} > <AiTwotoneHeart /></button>
                 :
-                    <button onClick={toggleFavorite} > <AiOutlineHeart /></button>
+                <button className={`${favs.button} ${favs.notActive}`} onClick={toggleFavorite} > <AiOutlineHeart /></button>
             }
         </>
     );

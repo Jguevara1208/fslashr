@@ -1,0 +1,20 @@
+.active {
+    color: #026670;
+}
+
+.notActive {
+    color: rgba(0, 0, 0, .4);
+    transition: .3s cubic-bezier(1, 0, 0, 1);
+}
+
+.notActive:hover {
+    color: #026670;
+}
+
+.button {
+    background-color: white;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    height: 27px;
+}

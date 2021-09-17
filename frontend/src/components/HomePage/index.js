@@ -6,7 +6,7 @@ import FavoriteButton from '../FavoriteButton';
 import { BiComment } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
 import { getFavorites } from '../../store/favorites';
-import './HomePage.css';
+import home from './HomePage.module.css';
 
 function HomePage() {
 
@@ -23,32 +23,41 @@ function HomePage() {
     }, [dispatch, sessionUser]);
 
     return (
-        <div>
-            <p>Activity</p>
+        <div className={home.wrapper}>
+            <div className={home.activity}>
+                <p>Activity</p>
+            </div>
             {sessionUser && feed?.map((photo) => (
-                <div className='feed' key={photo.id}>
-                    <div className='card-top' >
+                <div className={home.card} key={photo.id}>
+                    <div className={home.user}>
                         <Link to={`/users/${photo.User.id}`}>
                             <div 
-                                className='avatar' 
+                                className={home.avatar}
                                 style={{backgroundImage: `url('${photo.User.avatarUrl}')`}} 
                             />
                         </Link>
-                        <p>{photo.User.firstName} {photo.User.lastName}</p>
+                        <Link to={`/users/${photo.User.id}`}>
+                            <p className={home.text}>{photo.User.firstName} {photo.User.lastName}</p>
+                        </Link>
+                    </div>
+
+                    <div>
                         <Link to={`/images/${photo.id}`}>
                             <div 
-                                className='feed-photo' 
+                                className={home.feedPhoto} 
                                 style={{backgroundImage: `url('${photo.imgUrl}')`}} 
                             />
                         </Link>
-                        <p>{photo.caption}</p>
                     </div>
-                    <div className='card-bottom' >
-                        <p>{photo.cameraSettings}</p>
-                        <div className='card-icons'>
+
+                    <div className={home.cardBottom} >
+                        <div className={home.info}>
+                            <p className={home.setting} >{photo.caption}</p>
+                            <p className={home.setting} >{photo.cameraSettings}</p>
+                        </div>
+                        <div className={home.cardIcons}>
                             <FavoriteButton photoId={photo.id} favorites={favorites}/>
-                            <BiComment style={{fontSize: '30', color: 'rgba(0, 0, 0, .4)'}} />
-                            <AiOutlineUserAdd style={{fontSize: '30', color: 'rgba(0, 0, 0, .4)'}} />
+                            <BiComment className={home.comment} />
                         </div>
                     </div>
                 </div>
