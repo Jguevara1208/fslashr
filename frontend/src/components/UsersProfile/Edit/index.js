@@ -17,6 +17,7 @@ function Edit() {
 
     return (
         <>
+            <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px' }}>Edit Photos</p>
             {sessionPhotos && sessionPhotos.map(photo => (
                 <Photo photo={photo} key={photo.id}/>
             ))}

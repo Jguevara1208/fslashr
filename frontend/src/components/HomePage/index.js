@@ -1,7 +1,6 @@
 import {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInfoThunk } from '../../store/userInfo';
-import { AiOutlineUserAdd } from 'react-icons/ai';
 import FavoriteButton from '../FavoriteButton';
 import { BiComment } from 'react-icons/bi'
 import { Link } from 'react-router-dom';

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { createAlbum, getUnusedPhotos } from '../../store/album';
 import AlbumPhotoAdd from './AlbumPhotoAdd';
-import './NewAlbum.css';
+import './NewAlbum.module.css';
 
 function NewAlbum() {
 
@@ -48,6 +48,7 @@ function NewAlbum() {
 
     return (
         <>
+            <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px' }}>Add an album</p>
             <form onSubmit={handleSubmit}>
                 <label>
                     <input 

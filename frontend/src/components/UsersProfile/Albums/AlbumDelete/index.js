@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteAlbum } from '../../../../store/userInfo';
-import { AiOutlineDelete } from 'react-icons/ai'
+import { AiOutlineDelete } from 'react-icons/ai';
+import aDelete from './AlbumDelete.module.css';
 
 function AlbumDelete({ albumId }) {
     
@@ -30,17 +31,17 @@ function AlbumDelete({ albumId }) {
     };
 
     return (
-        <>
-            <button onClick={openMenu}>
-                <AiOutlineDelete style={{ fontSize: '25px', color: 'rgba(0, 0, 0, .4)' }} />
+        <div className={aDelete.wrapper}>
+            <button className={aDelete.button} onClick={openMenu}>
+                <AiOutlineDelete className={aDelete.delete} />
             </button>
             {showMenu && (
-                <div>
-                    <p>Are you sure you want to delete this album?</p>
-                    <button onClick={deleteAlbumHandler}>Delete</button>
+                <div className={aDelete.dropDown}>
+                    <p>Delete this album?</p>
+                    <button className={aDelete.deleteButton} onClick={deleteAlbumHandler}>Delete</button>
                 </div>
             )}
-        </>
+        </div>
     );
 };
 
