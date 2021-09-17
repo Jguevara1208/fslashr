@@ -2,10 +2,13 @@ import { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { getAlbum, getUnusedPhotos } from '../../store/album';
+import { BiArrowBack } from 'react-icons/bi';
 import { editAlbum } from '../../store/album';
+import edit from './EditAlbum.module.css'
+import albumForm from '../NewAlbum/NewAlbum.module.css'
+import form from '../LoginFormModal/LoginForm.module.css'
 import AlbumPhotoEditUnused from './AlbumPhotoEdit/unused.js';
 import AlbumPhotoEditUsed from './AlbumPhotoEdit/used.js';
-import './EditAlbum.css';
 
 function EditAlbum() {
     const dispatch = useDispatch();
@@ -73,37 +76,44 @@ function EditAlbum() {
 
     
     return (
-        <>
-            <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px' }}>Edit Album</p>
-            <form onSubmit={handleSubmit}>
+        <div className={edit.wrapper}>
+            <div className={albumForm.goBack}>
+                <p onClick={() => history.goBack()}> <BiArrowBack /> back to albums</p>
+            </div>
+            <p style={{textAlign: 'left', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px', }}>Edit Album</p>
+            <form className={albumForm.form} onSubmit={handleSubmit}>
                 {!titleEdit 
                 ? 
-                    <p onClick={toggleEdit} >{title}</p> 
+                    <p className={edit.titleP} onClick={toggleEdit} >{title}</p> 
                 : 
-                        <label>
-                            <input 
-                                type="text" 
-                                value={albumTitle}
-                                onChange={(e) => setAlbumTitle(e.target.value)}
-                                placeholder={title}
-                            />
-                        </label>
+                <>
+                        <div className={form.standardInput}>
+                            <input className={form.input} type="text" name='title' placeholder=' ' value={albumTitle} onChange={(e) => setAlbumTitle(e.target.value)} required />
+                            <label className={form.label} htmlFor="title" >{title}</label>
+                            <span className={form.underline} ></span>
+                        </div>
+                </>
                 }
-                <p>Photos currently in the album, click to remove</p>
-                {usedPhotos && usedPhotos.map(photo => (
+                <p className={edit.line}>Photos currently in the album, click to remove</p>
+                <div className={edit.photoContainer}>
+                    {usedPhotos && usedPhotos.map(photo => (
                     <div key={photo.id} onClick={handleRemoveSelect}>
                             <AlbumPhotoEditUsed photo={photo}onClick={handleRemoveSelect} />
                     </div>
                 ))}
-                <p>Photos you can add to the album, click to add</p>
-                {unusedPhotos?.length > 0 && unusedPhotos.map(photo => (
-                    <div key={photo.id} onClick={handleAddSelect}>
-                        <AlbumPhotoEditUnused photo={photo} onClick={handleAddSelect} />
-                    </div>
-                ))}
-                <button>Apply Changes</button>
+                </div>
+                <p className={edit.line}>Photos you can add to the album, click to add</p>
+                <div className={edit.photoContainer}>
+                    {unusedPhotos?.length > 0 && unusedPhotos.map(photo => (
+                        <div key={photo.id} onClick={handleAddSelect}>
+                            <AlbumPhotoEditUnused photo={photo} onClick={handleAddSelect} />
+                        </div>
+                    ))}
+                </div>
+                
+                <button className={albumForm.button}>Apply Changes</button>
             </form>
-        </>
+        </div>
     );
 };
 

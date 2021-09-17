@@ -17,7 +17,9 @@
 }
 
 .addAnAlbum {
-    text-align: center;
+    text-align: left;
+    align-self: flex-start;
+    margin-left: 20px;
     color: rgba(0, 0, 0, .8); 
     font-size: 18px; 
     font-weight: 300; 
@@ -29,6 +31,7 @@
     display: flex;
     justify-content: flex-start;
     margin-top: 10px;
+    cursor: pointer; 
 }
 
 .photoWrapper {
@@ -41,7 +44,21 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    row-gap: 40px;
-    column-gap: 40px;
+    row-gap: 50px;
+    column-gap: 50px;
     width: 90%;
+}
+
+.button {
+    background-color: white;
+    border: 3px solid #026670;
+    color: #026670;
+    padding: 8px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #026670;
+    color: white;
 }

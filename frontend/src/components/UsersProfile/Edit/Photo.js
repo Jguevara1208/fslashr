@@ -3,11 +3,11 @@ import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { editImage } from '../../../store/image';
 import DeleteButton from './DeleteButton';
-import './Edit.css';
+import edit from './Edit.module.css';
 
 function Photo({photo}) {
-
     const dispatch = useDispatch();
+
     const [caption, setCaption] = useState(photo.caption);
     const [cameraSettings, setCameraSettings] = useState(photo.cameraSettings);
     const [captionEditActive, setCaptionEditActive] = useState(false);
@@ -39,8 +39,7 @@ function Photo({photo}) {
     return (
         <>
             {photo && (
-                <div className='photo-edit-container' key={photo.id}>
-                    <div className='edit-photo' style={{ backgroundImage: `url('${photo.imgUrl}')` }} />
+                <div className={edit.card} key={photo.id}>
                     {captionEditActive
                         ?   <form onSubmit={handleSubmitCaption}>
                                 <input 
@@ -58,22 +57,25 @@ function Photo({photo}) {
                                 {photo.caption}
                             </p>
                     }
-                    {cameraSettingsEditActive
-                        ?   <form onSubmit={handleSubmitCameraSettings}>
-                                <input 
-                                    type="text" 
-                                    value={cameraSettings}
-                                    onChange={(e) => setCameraSettings(e.target.value)}   
-                                    placeholder={cameraSettings || 'Camera Settings'} 
-                                />
-                                <button><AiOutlineCheckCircle /></button>
-                            </form>
+                    <div className={edit.photo} style={{ backgroundImage: `url('${photo.imgUrl}')` }} />
+                    <div className={edit.cardBottom}>
+                        {cameraSettingsEditActive
+                            ?   <form onSubmit={handleSubmitCameraSettings}>
+                                    <input 
+                                        type="text" 
+                                        value={cameraSettings}
+                                        onChange={(e) => setCameraSettings(e.target.value)}   
+                                        placeholder={cameraSettings || 'Camera Settings'} 
+                                    />
+                                    <button><AiOutlineCheckCircle /></button>
+                                </form>
 
-                        :   <p onClick={() => setCameraSettingsEditActive(true)}>
-                                {photo.cameraSettings}
-                            </p>
-                    }
-                    <DeleteButton photoId={photo.id} />
+                            :   <p onClick={() => setCameraSettingsEditActive(true)}>
+                                    {photo.cameraSettings}
+                                </p>
+                        }
+                        <DeleteButton photoId={photo.id} />
+                    </div>
                 </div>
             )}
         </>

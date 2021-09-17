@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import './AlbumPhotoEdit.css'
 
 function AlbumPhotoEditUnused({ photo }) {
 
-    const [selected, setSelected] = useState('unSelected')
+    const [selected, setSelected] = useState('unSelectedPhoto')
 
     const handleSelected = () => {
-        selected === 'unSelected' ? setSelected('selected') : setSelected('unSelected');
+        selected === 'unSelectedPhoto' ? setSelected('selectedPhoto') : setSelected('unSelectedPhoto');
     };
 
     return (
@@ -16,9 +15,7 @@ function AlbumPhotoEditUnused({ photo }) {
                 className={selected}
                 style={{ backgroundImage: `url('${photo.imgUrl}')` }}
                 onClick={handleSelected}
-            >
-                {selected === 'selected' && <p>Photo will be added to Album</p>}
-            </div>
+            />
         </>
     );
 };

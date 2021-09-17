@@ -4,7 +4,7 @@ import { Link } from  'react-router-dom';
 function About({user, followers, following}) {
     return (
         <div className={about.container}>
-            <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px' }}>About</p>
+            <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '40px', marginTop: '10px' }}>About</p>
             <div className={about.wrapper}>
                 <p className={about.name}>{user.username}</p>
                 <p className={about.bio}>{user.bio}</p>

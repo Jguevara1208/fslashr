@@ -13,11 +13,10 @@
 }
 
 .link {
-    padding: 6px 6px;
+    padding: 8px;
     border: 3px solid #026670;
     color: #026670;
     font-weight: 500;
-    border-radius: 5px;
     transition: .05s cubic-bezier(0.6, 0.04, 0.98, 0.335);
     margin-bottom: 15px;
 }
