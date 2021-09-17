@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 30px;
+    padding: 15px;
+    margin-top: 20px;
+    width: 60%;
+    background-color: white;
+}
+
+.addAnAlbum {
+    text-align: center;
+    color: rgba(0, 0, 0, .8); 
+    font-size: 18px; 
+    font-weight: 300; 
+    margin-bottom: 0px; 
+}
+
+.goBack {
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.photoWrapper {
+    width: fit-content;
+}
+
+.allPhotos {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 40px;
+    column-gap: 40px;
+    width: 90%;
+}
