@@ -4,6 +4,7 @@ import * as sessionActions from '../../store/session';
 import { AiOutlineUser } from 'react-icons/ai'
 import { useHistory } from 'react-router';
 import { NavLink } from 'react-router-dom'
+import nav from './Navigation.module.css'
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -35,19 +36,17 @@ function ProfileButton({ user }) {
     };
 
     return (
-        <>
-            <button onClick={openMenu}>
+        <div className={nav.wrapper}>
+            <button className={nav.profile} onClick={openMenu}>
                 <AiOutlineUser />
             </button>
             {showMenu && (
-                <ul className='profile-dropdown'>
-                    <NavLink exact to={`/users/${user.id}`}>{user.username}</NavLink>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
-                    </li>
-                </ul>
+                <div className={nav.dropdown}>
+                    <NavLink className={nav.link} exact to={`/users/${user.id}`}>{user.username}</NavLink>
+                    <button className={`${nav.link} ${nav.button}`} onClick={logout}>Log Out</button>
+                </div>
             )}
-        </>
+        </div>
     );
 };
 
