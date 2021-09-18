@@ -5,7 +5,7 @@ module.exports = {
     const favorites = []
     for (let i = 1; i < 11; i++) {
       for(let j = 0; j < 10; j++) {
-        const randomNumber = Math.floor(Math.random() * 364) + 1
+        const randomNumber = Math.floor(Math.random() * 458) + 1
         favorites.push({
           userId: i,
           photoId: randomNumber
