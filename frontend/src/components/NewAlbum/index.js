@@ -54,22 +54,27 @@ function NewAlbum() {
             <div className={albumForm.goBack}>
                 <p onClick={() => history.goBack()}> <BiArrowBack /> back to albums</p>
             </div> 
-            <form className={albumForm.form} onSubmit={handleSubmit}>
-                <p className={albumForm.addAnAlbum}>Add an album</p>
-                <div className={form.standardInput}>
-                    <input className={form.input} type="text" name='title' placeholder=' ' value={albumTitle} onChange={(e) => setAlbumTitle(e.target.value)} required />
-                    <label className={form.label} htmlFor="title" >Title</label>
-                    <span className={form.underline} ></span>
-                </div>
-                <div className={albumForm.allPhotos}>
-                    {availablePhotos && availablePhotos.map(photo => (
-                        <div className={albumForm.photoWrapper} key={photo.id} onClick={handleSelect}>
-                            <AlbumPhotoAdd photo={photo} onClick={handleSelect}/>
+            {availablePhotos?.length > 0 
+                ? 
+                    <form className={albumForm.form} onSubmit={handleSubmit}>
+                        <p className={albumForm.addAnAlbum}>Add an album</p>
+                        <div className={form.standardInput}>
+                            <input className={form.input} type="text" name='title' placeholder=' ' value={albumTitle} onChange={(e) => setAlbumTitle(e.target.value)} required />
+                            <label className={form.label} htmlFor="title" >Title</label>
+                            <span className={form.underline} ></span>
                         </div>
-                    ))}
-                </div>
-                <button>Create Album</button>
-            </form>
+                        <div className={albumForm.allPhotos}>
+                            {availablePhotos.length && availablePhotos.map(photo => (
+                                <div className={albumForm.photoWrapper} key={photo.id} onClick={handleSelect}>
+                                    <AlbumPhotoAdd photo={photo} onClick={handleSelect}/>
+                                </div>
+                            ))}
+                        </div>
+                        <button className={albumForm.button}>Create Album</button>
+                    </form>
+                :
+                    <p>All of your photos are in albums!</p>
+            }
         </div>
     );
 };

@@ -49,10 +49,12 @@
     position: absolute;
     color: white;
     opacity: 0;
+    background-color: rgba(0, 0, 0, .4);
+    padding: 5px;
 }
 
 .caption {
-    transform: translate(20px, 340px)
+    transform: translate(20px, 340px);
 }
 
 .username {
