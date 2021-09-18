@@ -1,0 +1,71 @@
+.photo {
+    width: 25em;
+    height: 25em;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.link {
+    padding: 8px;
+    border: 3px solid #026670;
+    color: #026670;
+    font-weight: 500;
+    transition: .05s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    margin-top: 15px;
+}
+
+.link:hover {
+    background-color: #026670;
+    color: white;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    column-gap: 20px;
+    width: 80%;
+}
+
+.card {
+    padding: 8px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info {
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.edit {
+    color:rgba(0, 0, 0, 0.6);
+    font-size: 27px;
+    height: 27px;
+    transform: translateY(2px);
+}
+
+.edit:hover {
+    color: #026670;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

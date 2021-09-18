@@ -1,0 +1,25 @@
+.banner {
+    width: 82.55%;
+    height: 15vh;
+    background-size: cover;
+    background-position: center;
+    transform: translateY(33px);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 18px;
+    color: rgba(0, 0, 0, .6);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

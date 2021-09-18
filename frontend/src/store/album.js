@@ -88,6 +88,7 @@ const albumReducer = (state=initialState, action) => {
     switch (action.type) {
         case GET_ALBUM:
             newState = Object.assign({}, state);
+            console.log(action.album)
             newState.album = action.album;
             let banner = newState.album[0];
             newState.banner = banner;

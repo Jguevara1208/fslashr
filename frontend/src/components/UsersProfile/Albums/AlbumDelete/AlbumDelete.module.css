@@ -1,0 +1,79 @@
+.button {
+    background-color: white;
+    border: none;
+    box-sizing: border-box;
+    height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 25px;
+    color: rgba(0, 0, 0, .6);
+    transition: .3s cubic-bezier(1, 0, 0, 1);
+}
+
+.button:hover {
+    color: #026670;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.dropDown {
+    z-index: 100;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
+    transform: translate(-110%, -100%);
+    width: 200px;
+    height: 100px;
+}
+
+.dropDown p {
+    width: 200px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.deleteButton {
+    background-color: white;
+    border: 3px solid #026670;
+    color: #026670;
+    font-weight: 600;
+    transition: .2s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: #026670;
+    color: white
+}
+
+.dropDownTwo {
+    z-index: 100;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
+    transform: translate(-40%, -135%);
+    width: 200px;
+    height: 100px;
+}
+
+.dropDownTwo p {
+    width: 200px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 200;
+}

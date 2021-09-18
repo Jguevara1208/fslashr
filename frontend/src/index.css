@@ -1,10 +1,15 @@
-.html {
-    width: 100%;
+#root {
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: #F2F2F2;
 }
 
 .app {
     font-family: 'Krub', serif;
-    width: 100%;
+    scroll-behavior: smooth;
 }
 
 button {

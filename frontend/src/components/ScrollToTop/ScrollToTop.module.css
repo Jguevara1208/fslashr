@@ -1,0 +1,21 @@
+.scrollTop {
+    position:fixed;
+    bottom: 1.5em;
+    right: 3.5em;
+    background-color: transparent;
+}
+
+.arrow {
+    font-size: 50px;
+    color: rgba(0, 0, 0, .5);
+}
+
+.arrow:hover {
+    color: #026670;
+}
+
+@media (max-width: 900px) {
+    .scrollTop {
+        display: none;
+    }
+}

@@ -10,6 +10,7 @@ import ImageUpload from './components/ImageUpload';
 import ImagePage from './components/ImagePage';
 import NewAlbum from './components/NewAlbum'
 import EditAlbum from './components/EditAlbum'
+import ScrollToTop from './components/ScrollToTop';
 import * as sessionActions from './store/session';
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
   }, [dispatch])
 
   return (
-    <>
+    <div id='top'>
       {!sessionUser && (
         <Route exact path='/'>
           <SplashPage />
@@ -56,7 +57,8 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+      <ScrollToTop/>
+    </div>
   );
 }
 

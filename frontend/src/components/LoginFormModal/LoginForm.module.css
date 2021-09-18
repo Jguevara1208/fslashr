@@ -31,10 +31,6 @@
     cursor: pointer;
 }
 
-/* .splashButton:hover {
-    border-bottom: 7px solid black;
-} */
-
 .buttonContainer {
     width: 95.5%;
     display: flex;
@@ -145,4 +141,12 @@ h3 {
 
 .input:focus ~ label {
     color: #026670 !important;
+}
+
+.demo {
+    cursor: pointer;
+    color: #026670;
+    font-weight: 500;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #026670;
 }
