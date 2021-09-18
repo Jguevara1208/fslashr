@@ -8,6 +8,15 @@
   padding: 10px;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  animation: moveDown 0.5s ease-in-out;
+  width: 100%;
+  z-index: 100;
+}
+
 .wrapper {
     width: 80%;
     display: flex;
@@ -15,4 +24,12 @@
     align-items: flex-end;
 }
 
+@keyframes moveDown {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0rem);
+  }
+}
 
