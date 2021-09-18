@@ -24,11 +24,13 @@
 }
 .card {
     background-color: white;
-    padding: 10px;
+    padding: 10px 10px 0px 10px;
 }
 
 .cardBottom {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .directions {
@@ -41,4 +43,89 @@
     border-bottom: 1px solid rgba(0, 0, 0, .3);
     width: 65%; 
     padding-bottom: 20px;
+}
+
+.standardInput {
+    position: relative;
+    margin: 20px 0px;
+}
+
+.input {
+    color:black;
+    height: 2rem;
+    border: none;
+    border-bottom: 1px solid #EDEAE5;
+    background-color: white;
+    /* padding-left: 20px; */
+    font-size: 14px;
+    transition: .1s cubic-bezier(.65,.05,.36,1);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.label {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    margin-left: 24px;
+    transform: translateY(-50%);
+    background-color: rgba();
+    color: rgba(0, 0, 0, .5);
+    text-align: center;
+    transition: .2s cubic-bezier(.65,.05,.36,1);
+    font-size: 1rem;
+    pointer-events: none;
+    padding: 0 5px;
+}
+
+.input:not(:placeholder-shown) ~ label,
+.input:focus ~ label {
+    top: 0px;
+    left: -25px;
+    font-size: .7rem;
+}
+
+.underline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: scaleX(0);
+    transition: transform 0.2s cubic-bezier(.65,.05,.36,1);
+    border-bottom: 3px solid #026670;
+}
+
+.input:focus ~ .underline {
+    transform: scaleX(1);
+}
+
+.input:hover {
+    border-bottom: 1px solid black;
+}
+
+.input:focus ~ label {
+    color: #026670 !important;
+}
+
+.submit {
+    background-color: white;
+    border: none;
+    border-left: 5px;
+    font-size: 25px;
+    color: rgba(0, 0, 0, .6);
+    cursor: pointer;
+}
+
+.submit:hover {
+    color: #026670;
+}
+
+.inputWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.deleteWrapper {
+    display: flex;
+    justify-content: flex-end;
 }

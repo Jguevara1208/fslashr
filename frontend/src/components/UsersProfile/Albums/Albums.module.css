@@ -18,7 +18,7 @@
     color: #026670;
     font-weight: 500;
     transition: .05s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .link:hover {

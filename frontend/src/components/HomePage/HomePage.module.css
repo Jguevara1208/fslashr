@@ -85,3 +85,13 @@
     column-gap: 10px;
     margin-top: 10px;
 }
+
+.link {
+    background-color: #F2F2F2;
+    color: black;
+}
+
+.actP {
+    font-weight: 300;
+    color:rgba(0, 0, 0, .7)
+}

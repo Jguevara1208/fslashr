@@ -22,9 +22,6 @@ function Album() {
         <>
             <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px' }}>Albums</p>
             <div className={albums.container}>
-                {+userId === currentUser?.id && (
-                    <Link className={albums.link} to='/albums/new'>New Album</Link>
-                )}
                 {currentUserAlbums.length > 0 
                 ? 
                     <div className={albums.wrapper}>
@@ -50,7 +47,10 @@ function Album() {
                     </div>
                 :
                     <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px' }}>This user doesn't have any albums...</p>
-            }
+                }
+                {+userId === currentUser?.id && (
+                    <Link className={albums.link} to='/albums/new'>New Album</Link>
+                )}
             </div>
         </>
     );

@@ -41,41 +41,52 @@ function Photo({photo}) {
             {photo && (
                 <div className={edit.card} key={photo.id}>
                     {captionEditActive
-                        ?   <form onSubmit={handleSubmitCaption}>
-                                <input 
-                                    type="text" 
-                                    value={caption} 
-                                    onChange={(e) => setCaption(e.target.value)} 
-                                    placeholder={caption || 'Caption'}
-                                />
-                                <button>
-                                    <AiOutlineCheckCircle />
-                                </button>
-                                </form>
+                        ?   
+                            <form onSubmit={handleSubmitCaption}>
+                                <div className={edit.inputWrapper}>
+                                    <div className={`${edit.standardInput} ${edit.input}`}>
+                                        <input className={edit.input} type="text" name='username' placeholder=' ' value={caption} onChange={(e) => setCaption(e.target.value)} required />
+                                        <label className={edit.label} htmlFor="username" >Caption</label>
+                                        <span className={edit.underline} ></span>
+                                    </div>
+                                    <button className={edit.submit}>
+                                        <AiOutlineCheckCircle />
+                                    </button>
+                                </div>
+                            </form>
 
-                        :   <p onClick={() => setCaptionEditActive(true)}>
+                        :   
+                            <p onClick={() => setCaptionEditActive(true)}>
                                 {photo.caption}
                             </p>
                     }
                     <div className={edit.photo} style={{ backgroundImage: `url('${photo.imgUrl}')` }} />
                     <div className={edit.cardBottom}>
                         {cameraSettingsEditActive
-                            ?   <form onSubmit={handleSubmitCameraSettings}>
-                                    <input 
-                                        type="text" 
-                                        value={cameraSettings}
-                                        onChange={(e) => setCameraSettings(e.target.value)}   
-                                        placeholder={cameraSettings || 'Camera Settings'} 
-                                    />
-                                    <button><AiOutlineCheckCircle /></button>
+                            ?   
+                                <form onSubmit={handleSubmitCameraSettings}>
+                                    <div className={edit.inputWrapper}>
+                                        <button className={edit.submit} >
+                                            <AiOutlineCheckCircle />
+                                        </button>
+                                        <div className={`${edit.standardInput} ${edit.input}`}>
+                                            <input className={edit.input} type="text" name='username' placeholder=' ' value={cameraSettings} onChange={(e) => setCameraSettings(e.target.value)} required />
+                                            <label className={edit.label} htmlFor="username" >CameraSettings</label>
+                                            <span className={edit.underline} ></span>
+                                        </div>
+                                    </div>
                                 </form>
 
-                            :   <p onClick={() => setCameraSettingsEditActive(true)}>
+                            :   
+                                <p onClick={() => setCameraSettingsEditActive(true)}>
                                     {photo.cameraSettings}
                                 </p>
                         }
-                        <DeleteButton photoId={photo.id} />
+                        <div className={edit.deleteWrapper}>
+                            <DeleteButton photoId={photo.id} />
+                        </div>
                     </div>
+                    
                 </div>
             )}
         </>

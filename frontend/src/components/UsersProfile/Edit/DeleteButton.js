@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteImage } from '../../../store/userInfo';
 import { AiOutlineDelete } from 'react-icons/ai'
+import aDelete from '../Albums/AlbumDelete/AlbumDelete.module.css';
 
 function DeleteButton({ photoId }) {
     const dispatch = useDispatch();
@@ -31,15 +32,17 @@ function DeleteButton({ photoId }) {
 
     return (
         <>
-            <button onClick={openMenu}>
-                <AiOutlineDelete style={{ fontSize: '25px', color: 'rgba(0, 0, 0, .4)' }} />
-            </button>
-            {showMenu && (
-                <div>
-                    <p>Are you sure you want to delete this photo?</p>
-                    <button onClick={deletePhoto}>Delete</button>
-                </div>
-            )}
+            <div className={aDelete.wrapper}>
+                <button className={aDelete.button} onClick={openMenu}>
+                    <AiOutlineDelete className={aDelete.delete} />
+                </button>
+                {showMenu && (
+                    <div className={aDelete.dropDownTwo}>
+                        <p>Delete this photo?</p>
+                        <button className={aDelete.deleteButton} onClick={deletePhoto}>Delete</button>
+                    </div>
+                )}
+            </div>
         </>
     );
 };

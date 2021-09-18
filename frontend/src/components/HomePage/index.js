@@ -6,6 +6,7 @@ import { BiComment } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
 import { getFavorites } from '../../store/favorites';
 import home from './HomePage.module.css';
+import link from '../Navigation/Navigation.module.css'
 
 function HomePage() {
 
@@ -24,8 +25,10 @@ function HomePage() {
     return (
         <div className={home.wrapper}>
             <div className={home.activity}>
-                <p>Activity</p>
+                <Link className={`${link.link} ${home.link}`} to={`/users/${sessionUser?.id}`}>Your Profile</Link>
             </div>
+            <p className={home.actP}>Activity</p>
+
             {sessionUser && feed?.map((photo) => (
                 <div className={home.card} key={photo.id}>
                     <div className={home.user}>
