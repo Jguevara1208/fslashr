@@ -17,7 +17,7 @@ export const addAlbumAction = (album) => {
     };
 };
 
-export const editAlbumAction = (album) => {
+const editAlbumAction = (album) => {
     return {
         type: EDIT_ALBUM,
         album
@@ -73,6 +73,21 @@ const getAllImagesAction = (photos) => {
         photos
     };
 };
+
+export const createAlbum = (album) => async (dispatch) => {
+    const response = await csrfFetch(`/api/albums`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(album)
+    });
+
+    const albumRes = await response.json();
+
+    dispatch(addAlbumAction(albumRes));
+    return album;
+}
 
 export const addImage = (imageObj) => async (dispatch) => {
     const imageData = new FormData();
@@ -228,8 +243,6 @@ const userInfoReducer = (state=initialState, action) => {
         case EDIT_ALBUM:
             newState = Object.assign({}, state);
             const editedAlbums = newState.albums.map(album => {
-                console.log(typeof album.id)
-                console.log(typeof action.album.id)
                 if (album.id === action.album.id) {
                     return action.album
                 }
@@ -239,7 +252,7 @@ const userInfoReducer = (state=initialState, action) => {
             return newState;
         case ADD_ALBUM:
             newState = Object.assign({}, state);
-            let newAlbums = [...newState.albums, action.album];
+            let newAlbums = [action.album, ...newState.albums, ];
             newState.albums = newAlbums;
             return newState
         case DELETE_ALBUM:

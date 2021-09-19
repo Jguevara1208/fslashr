@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { createAlbum, getUnusedPhotos } from '../../store/album';
+import { getUnusedPhotos } from '../../store/album';
+import { createAlbum } from '../../store/userInfo';
 import { BiArrowBack } from 'react-icons/bi';
 import AlbumPhotoAdd from './AlbumPhotoAdd';
-import form from '../LoginFormModal/LoginForm.module.css'
-import albumForm from './NewAlbum.module.css'
+import form from '../LoginFormModal/LoginForm.module.css';
+import albumForm from './NewAlbum.module.css';
 import './NewAlbum.module.css';
 
 function NewAlbum() {
@@ -38,7 +39,7 @@ function NewAlbum() {
 
     const handleSelect = (e) => {
         const photoId = e.target.id;
-
+        
         if (selectedPhotos.includes(photoId)) {
             const index = selectedPhotos.indexOf(photoId)
             const newArr = [...selectedPhotos.slice(0, index), ...selectedPhotos.slice(index +  1)]

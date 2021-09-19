@@ -30,12 +30,11 @@ router.post('/', restoreUser, asyncHandler(async (req, res) => {
         await photoDB.update({ albumId: newAlbum.id})
     }
 
-    const newAlbumPhotos = await  Photo.findAll({
-        include: { model: User },
-        where: { albumId }
+    const last = await Album.findByPk(albumId, {
+        include: { model: Photo}
     })
 
-    res.json(newAlbumPhotos)
+    res.json(last)
 }))
 
 router.patch('/:albumId', restoreUser, asyncHandler( async (req, res) => {
@@ -56,11 +55,6 @@ router.patch('/:albumId', restoreUser, asyncHandler( async (req, res) => {
         const photoDB = await Photo.findByPk(photo);
         await photoDB.update({albumId: newAlbum.id });
     }
-
-    // const newAlbumPhotos = await Photo.findAll({
-    //     include: { model: User },
-    //     where: { albumId: newAlbum.id }
-    // });
 
     const lastone = await Album.findByPk(albumId, {
         include: { model: Photo }

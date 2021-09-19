@@ -1,7 +1,6 @@
 import { csrfFetch } from './csrf';
 
 const GET_ALBUM = 'album/GET_ALBUM';
-const EDIT_ALBUM = 'album/EDIT_ALBUM';
 const CREATE_ALBUM = 'album/CREATE_ALBUM';
 const UNUSED_PHOTOS = 'album/UNUSED_PHOTOS';
 
@@ -40,21 +39,6 @@ export const getUnusedPhotos = (userId) => async (dispatch) => {
     dispatch(setUnusedPhotos(photos))
 }
 
-export const createAlbum = (album) => async (dispatch) => {
-    const response = await csrfFetch(`/api/albums`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(album)
-    });
-
-    const albumRes = await response.json();
-
-    dispatch(createAlbumAction(albumRes));
-    return album;
-}
-
 const initialState = {
     album: null,
     banner: null,
@@ -70,10 +54,6 @@ const albumReducer = (state=initialState, action) => {
             newState.album = action.album;
             let banner = newState.album[0];
             newState.banner = banner;
-            return newState;
-        case CREATE_ALBUM:
-            newState = Object.assign({}, state);
-            newState.album = action.album;
             return newState;
         case UNUSED_PHOTOS:
             newState = Object.assign({}, state);
