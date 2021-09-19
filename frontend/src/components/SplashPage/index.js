@@ -7,8 +7,8 @@ import SignupFormModal from '../SignupFormModal';
 
 function SplashPage() {
 
-    const slidePresentationTime = 7000 
-    const [currentSlide, setCurrentSlide] = useState(0) 
+    const slidePresentationTime = 7000 ;
+    const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
         const sliderInterval = setInterval(() => {

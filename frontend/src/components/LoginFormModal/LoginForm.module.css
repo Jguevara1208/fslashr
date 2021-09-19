@@ -150,3 +150,23 @@ h3 {
     padding-bottom: 4px;
     border-bottom: 1px solid #026670;
 }
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.fileChooser {
+    border: 1px solid rgba(0, 0, 0, .5);
+    padding: 5px;
+    cursor: pointer;
+}
+
+.fileChooser:hover {
+    border: 1px solid #026670;
+    color: #026670;
+}

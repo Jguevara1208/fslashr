@@ -1,6 +1,7 @@
 import { AiOutlineDelete } from 'react-icons/ai'
 import { useDispatch, useSelector} from 'react-redux';
 import { deleteComment } from '../../../store/image';
+import cmt from '../CommentSection/CommentSection.module.css'
 
 function Comment ({comment}) {
 
@@ -21,14 +22,18 @@ function Comment ({comment}) {
     }
 
     return (
-        <div>
-            <div className='comment-avatar' style={{ backgroundImage: `url('${comment.User.avatarUrl}')` }} />
-            <p>{comment.User.username}</p>
-            <p>{formatDate(comment.createdAt)}</p>
-            <p>{comment.comment}</p>
-            {comment.User.id === user.id && (
-                <AiOutlineDelete onClick={handleDelete} />
-            )}
+        <div className={cmt.card}>
+            <div className={cmt.cardInfo}>
+                <div className={cmt.avatar} style={{ backgroundImage: `url('${comment.User.avatarUrl}')` }} />
+                <div className={cmt.nameDate}>
+                    <p className={cmt.name}>{comment.User.username}</p>
+                    <p className={cmt.date}>{formatDate(comment.createdAt)}</p>
+                </div>
+                    {comment.User.id === user.id && (
+                        <AiOutlineDelete className={cmt.delete} onClick={handleDelete} />
+                    )}
+            </div>
+            <p className={cmt.cmt} >{comment.comment}</p>
         </div>
     );
 };

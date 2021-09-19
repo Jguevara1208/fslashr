@@ -13,7 +13,7 @@ function ProfileNav() {
     useEffect(() => {
         const element = document.querySelector(`.${pNav.nav}`)
         const handleScroll = () => {
-            window.scrollY  - 190 > element.getBoundingClientRect().bottom
+            window.scrollY  - 190 >= element.getBoundingClientRect().bottom
                 ? setSticky(true)
                 : setSticky(false);
         };

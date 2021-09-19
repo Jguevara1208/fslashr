@@ -12,9 +12,30 @@
 }
 
 .button {
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     font-size: 25px;
     cursor: pointer;
     height: 27px;
+}
+
+.button2 {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 35px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.active2 {
+    color: #026670;
+}
+
+.notActive2 {
+    color: white;;
+    transition: .3s cubic-bezier(1, 0, 0, 1);
+}
+
+.notActive2:hover {
+    color: #026670;
 }

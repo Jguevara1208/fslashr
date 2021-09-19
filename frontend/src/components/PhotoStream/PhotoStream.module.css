@@ -15,7 +15,7 @@
     width: 80%;
     background-color: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
-    padding: 24px;
+    padding: 1.275%;
 }
 
 .photo {
@@ -54,11 +54,11 @@
 }
 
 .caption {
-    transform: translate(20px, 340px);
+    transform: translate(20px, 27vh);
 }
 
 .username {
-    transform: translate(20px, 310px);
+    transform: translate(20px, 30.5vh);
 }
 
 

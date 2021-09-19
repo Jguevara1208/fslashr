@@ -3,7 +3,9 @@
     height: 15vh;
     background-size: cover;
     background-position: center;
-    transform: translateY(33px);
+    transform: translateY(34.5px);
+    display: flex;
+    align-items: flex-end;
 }
 
 .container {
@@ -14,8 +16,12 @@
 }
 
 .title {
-    font-size: 18px;
-    color: rgba(0, 0, 0, .6);
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, .85);
+    margin: 0px 0px 20px 50px;
+    padding: 1.5px 5px;
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .wrapper {

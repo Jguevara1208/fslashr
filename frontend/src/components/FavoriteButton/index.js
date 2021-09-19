@@ -4,15 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addFavorite, deleteFavorite } from '../../store/favorites';
 import favs from './FavoriteButton.module.css'
 
-function FavoriteButton({photoId, favorites}) {
+function FavoriteButton({photoId, favorites, bool}) {
     const dispatch = useDispatch();
 
     const userId = useSelector(state => state?.session?.user?.id);
-
     const [favorited, setFavorited] = useState(false);
 
     useEffect(() => {
-        const favorite = favorites?.find(favorite => favorite.photoId === +photoId )
+        const favorite = favorites?.find(favorite => favorite.photoId === +photoId);
         const favoriteBool = favorite === undefined ? false : true;
         setFavorited(favoriteBool);
     }, []);
@@ -31,9 +30,9 @@ function FavoriteButton({photoId, favorites}) {
         <>
             {favorited 
                 ? 
-                    <button className={`${favs.button} ${favs.active}`} onClick={toggleFavorite} > <AiTwotoneHeart /></button>
+                <button className={bool ? `${favs.button2} ${favs.active2}` : `${favs.button} ${favs.active}`} onClick={toggleFavorite} > <AiTwotoneHeart /></button>
                 :
-                <button className={`${favs.button} ${favs.notActive}`} onClick={toggleFavorite} > <AiOutlineHeart /></button>
+                <button className={bool ? `${favs.button2} ${favs.notActive2}`: `${favs.button} ${favs.notActive}`} onClick={toggleFavorite} > <AiOutlineHeart /></button>
             }
         </>
     );

@@ -1,74 +1,22 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addImage } from '../../store/image';
+import React, { useState } from 'react';
+import { Modal } from '../../context/Modal';
+import UploadForm from './UploadForm'
+import { AiOutlineCloudUpload } from 'react-icons/ai';
+import nav from '../Navigation/Navigation.module.css';
 
-function ImageUpload() {
-
-    const currentUserId = useSelector(state => state.session.user.id)
-
-    const [image, setImage] = useState(null);
-    const [caption, setCaption] = useState('');
-    const [cameraSettings, setCameraSettings] = useState('');
-    const [userId] =  useState(currentUserId);
-    const [errors, setErrors] = useState([]);
-
-    const dispatch = useDispatch();
-
-    const handleSubmit = (e) => {
-        e.preventDefault(addImage);
-        let newErrors = [];
-        dispatch(addImage({image, caption, cameraSettings, userId}))
-            .then(() => reset())
-            .catch( async (res) => {
-                const data = await res.json();
-                if (data && data.errors) {
-                    newErrors = data.errors;
-                    setErrors(newErrors);
-                };
-            });
-        reset()
-    };
-
-    const reset = () => {
-        setImage(null);
-        setCaption('');
-        setCameraSettings('');
-        setErrors([]);
-    };
+function LoginFormModal() {
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <>
-            <p>Upload an image</p>
-            {errors.length > 0 && errors.map((error) => (
-                <div key={error}>{error}</div>
-            ))}
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <input 
-                        type='text'
-                        placeholder='Caption'
-                        value={caption}
-                        onChange={(e) => setCaption(e.target.value)}
-                    />
-                </label>
-                <label>
-                    <input 
-                        type='text'
-                        placeholder='CameraSettings'
-                        value={cameraSettings}
-                        onChange={(e) => setCameraSettings(e.target.value)}
-                    />
-                </label>
-                <label>
-                    <input 
-                        type='file'
-                        onChange={(e) => setImage(e.target.files[0])}
-                    />
-                </label>
-                <button type='submit'>Upload Image</button>
-            </form>
+            < AiOutlineCloudUpload onClick={() => setShowModal(true)} className={nav.upload}/>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <UploadForm />
+                </Modal>
+            )}
         </>
     );
 };
 
-export default ImageUpload;
+export default LoginFormModal;

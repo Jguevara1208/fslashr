@@ -12,11 +12,12 @@
 }
 
 .upload {
-    font-size: .9em;
+    font-size: 2em;
     color:rgba(0, 0, 0, .5);
     cursor: pointer;
     margin-bottom: 3px;
     transition: .5s cubic-bezier(1, 0, 0, 1);
+    margin-bottom: 7px;
 }
 
 .profile {

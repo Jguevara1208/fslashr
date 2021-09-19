@@ -1,0 +1,82 @@
+.photo {
+    width: 100%;
+    height: 79vh;
+    margin-top: 1%;
+    background-position: center;
+    background-size: cover;
+}
+
+.wrapper {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #515151;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.back {
+    color: white;
+    font-size: 18px;
+    align-self: flex-start;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+    row-gap: 50px;
+}
+
+.favorites, .comments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, .7);
+    column-gap: 10px;
+    font-weight: 300;
+}
+
+.infoWrapper {
+    display: flex;
+    width: 70%;
+    justify-content: space-evenly;
+    column-gap: 30px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    color: white;
+    column-gap: 20px;
+}
+
+.caption {
+    color: white;
+    font-weight: 500;
+}
+
+.settings {
+    color: rgba(255, 255, 255, .7)
+}
+
+.backDiv {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.arrow {
+    color: white;
+    font-size: larger;
+}

@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { AiOutlineCloudUpload } from 'react-icons/ai';
 import NavLogo from './navbar-logo'
 import ProfileButton from "./ProfileButton";
 import nav from './Navigation.module.css';
+import ImageUpload from '../ImageUpload/'
 
 function Navigation( {isLoaded} ) {
     const sessionUser = useSelector(state => state.session.user);
@@ -14,7 +14,7 @@ function Navigation( {isLoaded} ) {
                 <NavLink exact to='/home'>{NavLogo}</NavLink>
                 {isLoaded && (
                     <div className={nav.buttons}>
-                        <NavLink className={nav.upload} to='/images/upload'><AiOutlineCloudUpload style={{fontSize: '2.2em'}} /></NavLink>
+                        <ImageUpload />
                         <ProfileButton user={sessionUser} />
                     </div>
                 )}

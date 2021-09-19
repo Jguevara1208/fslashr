@@ -28,9 +28,8 @@ function AlbumPage() {
             </div>
             {album && (
                 <div className={albumPage.container}>  
-                    <p className={albumPage.title}>{firstImage?.Album?.title}</p>
                     <div className={albumPage.banner} style={{backgroundImage: `url('${firstImage?.imgUrl}')`}}>
-                        <p>{album.title}</p>
+                        <p className={albumPage.title}>{firstImage?.Album?.title}</p>
                     </div>
                     <PhotoStream photos={album} />
                 </div>
