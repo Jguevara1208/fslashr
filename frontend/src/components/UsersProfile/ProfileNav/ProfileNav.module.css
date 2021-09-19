@@ -33,3 +33,34 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .photostream span {
+    display: none;
+  }
+
+  .photostream:after {
+    content: 'Photos';
+  }
+
+  .edit span {
+    display: none;
+  }
+
+  .edit:after {
+    content: 'Edit'
+  }
+
+  .favorites span {
+    display: none;
+  }
+
+  .favorites:after {
+    content: 'Favs'
+  }
+
+  .wrapper {
+    width: 90%;
+    justify-content: space-between;
+  }
+
+}

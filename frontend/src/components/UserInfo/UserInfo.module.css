@@ -82,3 +82,14 @@
     font-weight: 600;
     letter-spacing: 2px;
 }
+
+
+@media screen and (max-width: 480px) {
+    .moreInfo {
+        flex-direction: column;
+    }
+
+    .name {
+        margin: 14px 0px;
+    }
+}

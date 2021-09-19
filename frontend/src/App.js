@@ -30,32 +30,34 @@ function App() {
         </Route>
       )}
       {sessionUser && (
-        <Navigation isLoaded={isLoaded} />
-      )}
-      {isLoaded && (
-        <Switch>
-          <Route exact path='/albums/new'>
-            <NewAlbum />
-          </Route>
-          <Route exact path='/albums/:albumId/edit'>
-            <EditAlbum />
-          </Route>
-          <Route exact path='/albums/:albumId'>
-            <AlbumPage />
-          </Route>
-          <Route path='/users/:userId'>
-            <UsersProfile />
-          </Route>
-          <Route path='/home'>
-            <HomePage />
-          </Route>
-          <Route path='/images/upload'>
-            <ImageUpload />
-          </Route>
-          <Route path='/images/:photoId'>
-            <ImagePage />
-          </Route>
-        </Switch>
+        <>
+          <Navigation isLoaded={isLoaded} />
+          {isLoaded && (
+            <Switch>
+              <Route exact path='/albums/new'>
+                <NewAlbum />
+              </Route>
+              <Route exact path='/albums/:albumId/edit'>
+                <EditAlbum />
+              </Route>
+              <Route exact path='/albums/:albumId'>
+                <AlbumPage />
+              </Route>
+              <Route path='/users/:userId'>
+                <UsersProfile />
+              </Route>
+              <Route  eact path='/home'>
+                <HomePage />
+              </Route>
+              <Route path='/images/upload'>
+                <ImageUpload />
+              </Route>
+              <Route path='/images/:photoId'>
+                <ImagePage />
+              </Route>
+            </Switch>
+          )}
+      </>
       )}
       <ScrollToTop/>
     </div>

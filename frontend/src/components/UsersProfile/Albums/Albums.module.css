@@ -69,3 +69,24 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    .wrapper {
+        width: 100%
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .photo {
+        width: 100%;
+    }
+
+    .buttons {
+        align-items: normal;
+    }
+}

@@ -2,10 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getInfoThunk} from '../../../store/userInfo';
 import { useParams, Link } from 'react-router-dom';
-import { AiOutlineEdit } from 'react-icons/ai'
+import { AiOutlineEdit } from 'react-icons/ai';
 import AlbumDelete from './AlbumDelete';
-import albums from './Albums.module.css'
-// import link from '../../Navigation/Navigation.module.css'
+import albums from './Albums.module.css';
+
 
 function Album() {
     const dispatch = useDispatch();

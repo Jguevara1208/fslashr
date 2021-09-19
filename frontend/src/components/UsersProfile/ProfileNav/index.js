@@ -29,13 +29,13 @@ function ProfileNav() {
         <>
             <nav className={isSticky ? `${pNav.nav} ${pNav.sticky}` : pNav.nav} >
                 <div className={pNav.wrapper}>
-                    <NavLink activeClassName={link.active} className={link.link} exact to={`/users/${userId}/about`}>About</NavLink>
-                    <NavLink activeClassName={link.active} className={link.link} exact to={`/users/${userId}`}>Photostream</NavLink>
-                    <NavLink activeClassName={link.active} className={link.link} exact to={`/users/${userId}/albums`}>Albums</NavLink>
+                    <NavLink activeClassName={link.active} className={`${link.link} ${pNav.about}`} exact to={`/users/${userId}/about`}>About</NavLink>
+                    <NavLink activeClassName={link.active} className={`${link.link} ${pNav.photostream}`} exact to={`/users/${userId}`}><span> Photostream</span></NavLink>
+                    <NavLink activeClassName={link.active} className={`${link.link} ${pNav.albums}`} exact to={`/users/${userId}/albums`}>Albums</NavLink>
                     {+userId === userInfo && (
                     <>
-                        <NavLink activeClassName={link.active} className={link.link} exact to={`/users/${userId}/edit`}>Edit Photos</NavLink>
-                        <NavLink activeClassName={link.active} className={link.link} exact to={`/users/${userId}/favorites`}>Favorites</NavLink>
+                        <NavLink activeClassName={link.active} className={`${link.link} ${pNav.edit}`} exact to={`/users/${userId}/edit`}><span>Edit Photos</span></NavLink>
+                        <NavLink activeClassName={link.active} className={`${link.link} ${pNav.favorites}`} exact to={`/users/${userId}/favorites`}><span>Favorites</span></NavLink>
                     </>
                     )}
                 </div>

@@ -170,3 +170,14 @@ h3 {
     border: 1px solid #026670;
     color: #026670;
 }
+
+@media screen and (max-width: 480px) {
+    .form {
+        padding: 40px
+    }
+
+    .SignUpform {
+        padding: 10px 40px;
+        row-gap: 18px;
+    }
+}

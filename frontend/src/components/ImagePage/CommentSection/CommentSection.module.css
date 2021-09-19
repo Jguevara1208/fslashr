@@ -149,3 +149,15 @@
 .test:hover {
     color: #026670;
 }
+
+.close {
+    font-size: 20px;
+    color: black;
+    z-index: 110;
+}
+
+@media screen and (max-width: 480px) {
+    .commentButton {
+        display: none;
+    }
+}

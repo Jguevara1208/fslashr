@@ -62,3 +62,24 @@
 }
 
 
+@media screen and (max-width: 480px) {
+    .wrapper {
+        flex-direction: row;
+        align-content: center;
+    }
+    
+    .test {
+        height: auto;
+        width: 80%;
+    }
+
+    .options {
+        display: none;
+    }
+
+    .photoStream {
+        max-width: 100%;
+        max-height: 75vh;
+        min-width: 100%;
+    }
+}

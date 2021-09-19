@@ -1,7 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
-import logo from './splash-logo'
-import images from './splashPhotos'
-import splash from './SplashPage.module.css'
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import logo from './splash-logo';
+import images from './splashPhotos';
+import splash from './SplashPage.module.css';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 
@@ -10,16 +12,23 @@ function SplashPage() {
     const slidePresentationTime = 7000 ;
     const [currentSlide, setCurrentSlide] = useState(0);
 
+    const session = useSelector(state => state.session.user);
+
+    
     useEffect(() => {
         const sliderInterval = setInterval(() => {
             setCurrentSlide((currentSlide + 1) % images.length); 
         }, slidePresentationTime);
-
+        
         return () => {
             clearInterval(sliderInterval)
         }
     })
-
+    
+    console.log(session)
+    if (session) {
+        return <Redirect to='/home' />
+    }
 
     return (
         <>

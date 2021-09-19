@@ -80,3 +80,11 @@
     color: white;
     font-size: larger;
 }
+
+@media screen and (max-width: 480px) {
+    .comments,
+    .favorites,
+    .settings {
+        display: none
+    }
+}
