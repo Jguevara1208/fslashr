@@ -19,7 +19,7 @@ function PhotoStream({photos}) {
                             </li>
                         </div>
                     ))}
-                    <li></li>
+                    <li className={stream.photo}></li>
                 </ul>
             </div>
         </>

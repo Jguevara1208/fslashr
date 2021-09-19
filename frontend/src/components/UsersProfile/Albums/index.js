@@ -32,7 +32,7 @@ function Album() {
                                 </Link>
                                 <div className={albums.content}>
                                         <div className={albums.info}>
-                                            <p>{album.Photos.length} photos</p>
+                                            <p>{album?.Photos?.length} photos</p>
                                         </div>
                                     {+userId === currentUser?.id && (
                                         <div className={albums.buttons}>
