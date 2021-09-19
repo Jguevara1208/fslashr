@@ -1,5 +1,21 @@
-import PhotoStream from "../../PhotoStream";
-function Favorites({favorites}) {
+import PhotoStream from '../../PhotoStream';
+import { getFavorites } from '../../../store/userInfo';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+
+
+function Favorites() {
+    const dispatch = useDispatch();
+    const { userId } = useParams()
+
+
+    const favorites = useSelector(state => state.currentUser.favorites);
+
+
+    useEffect(() => {
+        dispatch(getFavorites(userId))
+    }, [])
 
     return (
         <>

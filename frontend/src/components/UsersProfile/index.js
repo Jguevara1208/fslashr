@@ -1,7 +1,7 @@
 import { useParams, Route, Switch} from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getInfoThunk } from '../../store/userInfo';
+import { getInfoThunk, getAllImages} from '../../store/userInfo';
 import ProfileNav from './ProfileNav';
 import UserInfo from '../UserInfo';
 import PhotoStream from '../PhotoStream';
@@ -19,7 +19,6 @@ function UsersProfile() {
     const photos = useSelector(state => state.currentUser.photos);
     const following = useSelector(state => state.currentUser.followings);
     const followers = useSelector(state => state.currentUser.followers);
-    const favorites = useSelector(state => state.currentUser.favorites);
 
     const data = {
         userInfo,
@@ -32,6 +31,7 @@ function UsersProfile() {
 
     useEffect(() => {
         dispatch(getInfoThunk(userId));
+        dispatch(getAllImages(userId))
     },[dispatch, userId]);
 
     return (
@@ -51,7 +51,7 @@ function UsersProfile() {
                             <Albums />
                         </Route>
                         <Route path='/users/:userId/favorites'>
-                            <Favorites favorites={favorites}/>
+                            <Favorites />
                         </Route>
                         <Route path='/users/:userId'>
                             <p style={{textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px'}}>Photostream</p>

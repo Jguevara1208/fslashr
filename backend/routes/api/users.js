@@ -65,34 +65,65 @@ router.post('/', validateSignup, asyncHandler(async(req, res) => {
 /*--------------------------------------------User Info------------------------------------------------*/
 /*-----------------------------------------------------------------------------------------------------*/
 
+router.get('/:userId/albums', restoreUser, asyncHandler(async (req, res) => {
+
+    const userId = req.params.userId;
+
+    const albums = await User.findByPk(userId, {
+        include: [
+            {
+                model: Album, include: {
+                    model: Photo,
+                        where: { userId }
+                }
+            }
+        ]
+    })
+
+    res.json(albums.Albums)
+}))
+
+
+router.get ('/:userId/feed', restoreUser, asyncHandler(async (req, res) => {
+    const userId = req.params.userId;
+    const following = await Follow.findAll({
+        where: { userId }
+    })
+
+    const userFollowingIds = following.map(following => following.followingId);
+    const feed = await Photo.findAll({
+        include: [User],
+        where: { userId: userFollowingIds },
+        limit: 50
+    });
+
+    res.json(feed)
+}));
+
+router.get('/:userId/favorites/photos', restoreUser, asyncHandler (async (req, res) => {
+        const userId = req.params.userId;
+        const photos = await User.findByPk(userId, {
+            include: { model: Photo, as: 'favorites', include: {
+                model: User
+            }}
+        })
+
+        res.json(photos.favorites)
+}));
+
 router.get('/:userId/info', restoreUser, asyncHandler(async (req, res) => {
     const userId = req.params.userId;
+
     const info = await User.findByPk(userId, {
         include: [
             { model: User, as: 'followings' },
             { model: User, as: 'followers' },
-            { model: Photo, include: { model: User }},
-            { model: Photo, as: 'favorites', include: {
-                model: User
-            }},
-            { model: Album , include: {
-                model: Photo,
-                where: { userId }
-            }}
         ]
     });
 
-    const { favorites, followings, followers, Albums: albums, Photos: photos } = info;
+    const { followings, followers, } = info;
 
-    const userFollowingIds = followings.map(following => following.id);
-
-    const feed = await Photo.findAll({
-        include: [User], 
-        where: { userId: userFollowingIds},
-        limit: 50
-    });
-
-    res.json({ feed, info, favorites, followings, followers, albums, photos });
+    res.json({ info, followings, followers });
 }))
 
 /*-------------------------------------------------------------------------------------------------------*/

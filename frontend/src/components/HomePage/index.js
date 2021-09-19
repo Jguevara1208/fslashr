@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getInfoThunk } from '../../store/userInfo';
+import { getFeed } from '../../store/userInfo'
 import FavoriteButton from '../FavoriteButton';
 import { BiComment } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ function HomePage() {
 
     useEffect(() => {
         if (sessionUser) {
-            dispatch(getInfoThunk(sessionUser?.id))
+            dispatch(getFeed(sessionUser?.id))
             dispatch(getFavorites(sessionUser?.id))
         }
     }, [dispatch, sessionUser]);
