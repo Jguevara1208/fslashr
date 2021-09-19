@@ -25,9 +25,9 @@ function App() {
   return (
     <div id='top'>
       {!sessionUser && (
-        <Route exact path='/'>
-          <SplashPage />
-        </Route>
+          <Route exact path='/'>
+            <SplashPage />
+          </Route>
       )}
       {sessionUser && (
         <>

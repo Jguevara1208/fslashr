@@ -42,7 +42,7 @@ function SignupFormPage() {
                 if (data && data.errors) setErrors(data.errors)
             }
         );
-        history.push('/home')
+        history.push('/')
     };
 
     return (

@@ -22,7 +22,7 @@ function LoginForm() {
                 if (data && data.errors) setErrors(data.errors);
             }
         );
-        history.push('/home')
+        history.push('/')
     };
 
     const demoUser = () => {
@@ -30,7 +30,7 @@ function LoginForm() {
             credential: 'DemoUser123', 
             password: 'Password1!'
         }));
-        history.push('/home')
+        history.push('/')
     }
 
     return (
