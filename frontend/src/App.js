@@ -46,7 +46,7 @@ function App() {
               <Route path='/users/:userId'>
                 <UsersProfile />
               </Route>
-              <Route  eact path='/home'>
+              <Route  eact path='/'>
                 <HomePage />
               </Route>
               <Route path='/images/upload'>
