@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getInfoThunk} from '../../../store/userInfo';
+import { getAlbums} from '../../../store/userInfo';
 import { useParams, Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import AlbumDelete from './AlbumDelete';
@@ -14,18 +14,17 @@ function Album() {
     const currentUser = useSelector(state => state.session.user)
 
     useEffect(() => {
-        dispatch(getInfoThunk(userId));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        dispatch(getAlbums(userId))
     },[]);
 
     return (
         <>
             <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px' }}>Albums</p>
             <div className={albums.container}>
-                {currentUserAlbums.length > 0 
+                {currentUserAlbums?.length > 0 
                 ? 
                     <div className={albums.wrapper}>
-                        {currentUserAlbums.map( album => (
+                        {currentUserAlbums?.map( album => (
                             <div className={albums.card} key={album.id}>
                                 <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '8px', marginTop: '0px' }}>{album.title}</p>
                                 <Link to={`/albums/${album.id}`}>

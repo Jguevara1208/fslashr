@@ -1,6 +1,9 @@
 import { csrfFetch } from "./csrf";
 
 const GET_INFO = 'userInfo/GET_INFO';
+const GET_ALBUMS = 'userInfo/GET_ALBUMS';
+const GET_FAVORITES = 'userInfo/GET_FAVORITES';
+const GET_FEED = 'userInfo/GET_FEED';
 const GET_ALL_IMAGES = 'image/GET_ALL_IMAGES';
 const ADD_ALBUM = 'album/ADD_ALBUM';
 const DELETE_ALBUM = 'album/DELETE_ALBUM'
@@ -9,6 +12,28 @@ export const addAlbumAction = (album) => {
     return {
         type: ADD_ALBUM,
         album
+    };
+};
+
+
+const getAlbumsAction = (albums) => {
+    return {
+        type: GET_ALBUMS,
+        albums
+    };
+};
+
+const getFavoritesAction = (favorites) => {
+    return {
+        type: GET_FAVORITES,
+        favorites
+    };
+};
+
+const getFeedAction = (feed) => {
+    return {
+        type: GET_FEED,
+        feed
     };
 };
 
@@ -32,6 +57,24 @@ const getAllImagesAction = (photos) => {
         photos
     };
 };
+
+export const getAlbums = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/${userId}/albums`);
+    const albums = await response.json();
+    dispatch(getAlbumsAction(albums));
+};
+
+export const getFavorites = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/${userId}/favorites/photos`)
+    const favorites = await response.json();
+    dispatch(getFavoritesAction(favorites));
+};
+
+export const getFeed = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/${userId}/feed`)
+    const feed = await response.json();
+    dispatch(getFeedAction(feed));
+}
 
 export const deleteAlbum = (albumId) => async (dispatch) => {
     const response  = await csrfFetch(`/api/albums/${albumId}`, {
@@ -100,19 +143,27 @@ const initialState = {
 const userInfoReducer = (state=initialState, action) => {
     let newState;
     switch (action.type) {
+        case GET_FAVORITES:
+            newState = Object.assign({}, state)
+            newState.favorites = action.favorites
+            return newState
+        case GET_FEED:
+            newState = Object.assign({}, state)
+            newState.feed = action.feed
+            return newState
         case GET_INFO:
             newState = Object.assign({}, state);
             newState.info = action.user.info;
-            newState.feed = action.user.feed;
-            newState.favorites = action.user.favorites;
             newState.followings = action.user.followings;
             newState.followers = action.user.followers;
-            newState.albums = action.user.albums;
-            newState.photos = action.user.photos;
             return newState;
         case GET_ALL_IMAGES:
             newState = Object.assign({}, state);
             newState.photos = action.photos;
+            return newState;
+        case GET_ALBUMS:
+            newState = Object.assign({}, state);
+            newState.albums = action.albums;
             return newState;
         case ADD_ALBUM:
             newState = Object.assign({}, state);

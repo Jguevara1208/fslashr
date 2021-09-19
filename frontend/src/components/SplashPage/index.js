@@ -25,7 +25,6 @@ function SplashPage() {
         }
     })
     
-    console.log(session)
     if (session) {
         return <Redirect to='/home' />
     }
