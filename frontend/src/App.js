@@ -46,14 +46,14 @@ function App() {
               <Route path='/users/:userId'>
                 <UsersProfile />
               </Route>
-              <Route  eact path='/'>
-                <HomePage />
-              </Route>
               <Route path='/images/upload'>
                 <ImageUpload />
               </Route>
               <Route path='/images/:photoId'>
                 <ImagePage />
+              </Route>
+              <Route  eact path='/'>
+                <HomePage />
               </Route>
             </Switch>
           )}

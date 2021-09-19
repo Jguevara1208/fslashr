@@ -7,12 +7,6 @@ const DELETE_IMAGE = 'image/DELETE_IMAGE';
 const ADD_COMMENT = 'comment/ADD_COMMENT';
 const DELETE_COMMENT = 'comment/DELETE_COMMENT';
 
-const addImageAction = (image) => {
-    return {
-        type: ADD_IMAGE,
-        image
-    };
-};
 
 const getImageAction = (image) => {
     return {
@@ -78,30 +72,6 @@ export const editImage = (image) => async (dispatch) => {
     return newImage;
 };
 
-export const addImage = (imageObj) => async (dispatch) => {
-    const imageData = new FormData();
-    const { image, caption, cameraSettings, userId, albumId } = imageObj;
-
-    if (imageObj) {
-        imageData.append('image', image);
-        imageData.append('caption', caption);
-        imageData.append('cameraSettings', cameraSettings);
-        imageData.append('userId', userId);
-        imageData.append('albumId', albumId);
-    };
-
-    const response = await csrfFetch('/api/images/', {
-        method: 'POST',
-        headers: {
-            "Content-Type": "multipart/form-data"
-        },
-        body: imageData
-    });
-
-    const imgResponse = await response.json();
-    dispatch(addImageAction(image));
-    return imgResponse;
-};
 
 export const getImage = (imageId) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${imageId}`);
@@ -117,10 +87,6 @@ const initialState = {
 const imageReducer = (state=initialState, action) => {
     let newState;
     switch (action.type) {
-        case ADD_IMAGE:
-            newState = Object.assign({}, state);
-            newState.image = action.image;
-            return newState;
         case GET_IMAGE:
             newState = Object.assign({}, state);
             newState.image = action.image;

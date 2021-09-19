@@ -5,13 +5,29 @@ const GET_ALBUMS = 'userInfo/GET_ALBUMS';
 const GET_FAVORITES = 'userInfo/GET_FAVORITES';
 const GET_FEED = 'userInfo/GET_FEED';
 const GET_ALL_IMAGES = 'image/GET_ALL_IMAGES';
+const ADD_IMAGE = 'image/ADD_IMAGE';
+const EDIT_ALBUM = 'album/EDIT_ALBUM';
 const ADD_ALBUM = 'album/ADD_ALBUM';
-const DELETE_ALBUM = 'album/DELETE_ALBUM'
+const DELETE_ALBUM = 'album/DELETE_ALBUM';
 
 export const addAlbumAction = (album) => {
     return {
         type: ADD_ALBUM,
         album
+    };
+};
+
+export const editAlbumAction = (album) => {
+    return {
+        type: EDIT_ALBUM,
+        album
+    };
+};
+
+const addImageAction = (image) => {
+    return {
+        type: ADD_IMAGE,
+        image
     };
 };
 
@@ -57,6 +73,46 @@ const getAllImagesAction = (photos) => {
         photos
     };
 };
+
+export const addImage = (imageObj) => async (dispatch) => {
+    const imageData = new FormData();
+    const { image, caption, cameraSettings, userId, albumId } = imageObj;
+
+    if (imageObj) {
+        imageData.append('image', image);
+        imageData.append('caption', caption);
+        imageData.append('cameraSettings', cameraSettings);
+        imageData.append('userId', userId);
+        imageData.append('albumId', albumId);
+    };
+
+    const response = await csrfFetch('/api/images/', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "multipart/form-data"
+        },
+        body: imageData
+    });
+
+    const imgResponse = await response.json();
+    dispatch(addImageAction(imgResponse));
+    return response;
+};
+
+export const editAlbum = (albumId, album) => async (dispatch) => {
+    const response = await csrfFetch(`/api/albums/${albumId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(album)
+    });
+    const newAlbum = await response.json();
+
+    dispatch(editAlbumAction(newAlbum));
+    return newAlbum;
+}
+
 
 export const getAlbums = (userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/users/${userId}/albums`);
@@ -161,9 +217,25 @@ const userInfoReducer = (state=initialState, action) => {
             newState = Object.assign({}, state);
             newState.photos = action.photos;
             return newState;
+        case ADD_IMAGE:
+            newState = Object.assign({}, state);
+            newState.photos = [action.image, ...newState.photos]
+            return newState;
         case GET_ALBUMS:
             newState = Object.assign({}, state);
             newState.albums = action.albums;
+            return newState;
+        case EDIT_ALBUM:
+            newState = Object.assign({}, state);
+            const editedAlbums = newState.albums.map(album => {
+                console.log(typeof album.id)
+                console.log(typeof action.album.id)
+                if (album.id === action.album.id) {
+                    return action.album
+                }
+                return album
+            });
+            newState.albums = editedAlbums;
             return newState;
         case ADD_ALBUM:
             newState = Object.assign({}, state);

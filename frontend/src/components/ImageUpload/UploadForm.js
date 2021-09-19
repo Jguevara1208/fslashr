@@ -1,10 +1,13 @@
 import { useState, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addImage } from '../../store/image';
-import form from '../LoginFormModal/LoginForm.module.css'
-import logo from '../LoginFormModal/modalLogo'
+import { addImage } from '../../store/userInfo';
+import { useHistory } from 'react-router';
+import form from '../LoginFormModal/LoginForm.module.css';
+import logo from '../LoginFormModal/modalLogo';
 
 function UploadForm() {
+
+    const history = useHistory();
 
     const currentUserId = useSelector(state => state.session.user.id)
 
@@ -30,15 +33,8 @@ function UploadForm() {
         e.preventDefault(addImage);
         let newErrors = [];
         dispatch(addImage({image, caption, cameraSettings, userId}))
-            .then(() => reset())
-            .catch( async (res) => {
-                const data = await res.json();
-                if (data && data.errors) {
-                    newErrors = data.errors;
-                    setErrors(newErrors);
-                };
-            });
         reset()
+        history.push(`/users/${currentUserId}`)
     };
 
     const reset = () => {

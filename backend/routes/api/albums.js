@@ -57,12 +57,16 @@ router.patch('/:albumId', restoreUser, asyncHandler( async (req, res) => {
         await photoDB.update({albumId: newAlbum.id });
     }
 
-    const newAlbumPhotos = await Photo.findAll({
-        include: { model: User },
-        where: { albumId: newAlbum.id }
-    });
+    // const newAlbumPhotos = await Photo.findAll({
+    //     include: { model: User },
+    //     where: { albumId: newAlbum.id }
+    // });
 
-    res.json(newAlbumPhotos)
+    const lastone = await Album.findByPk(albumId, {
+        include: { model: Photo }
+    })
+
+    res.json(lastone)
 }))
 
 router.delete('/:albumId', restoreUser, asyncHandler( async (req, res) => {

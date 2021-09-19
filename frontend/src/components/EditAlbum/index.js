@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { getAlbum, getUnusedPhotos } from '../../store/album';
 import { BiArrowBack } from 'react-icons/bi';
-import { editAlbum } from '../../store/album';
+import { editAlbum } from '../../store/userInfo';
 import edit from './EditAlbum.module.css'
 import albumForm from '../NewAlbum/NewAlbum.module.css'
 import form from '../LoginFormModal/LoginForm.module.css'
