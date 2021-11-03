@@ -76,7 +76,7 @@ function UploadForm() {
                     <input type='file' className={form.inputfile} ref={fileUpload} onChange={setPhoto} />
                     <div className={form.fileChooser} onClick={() => handleUpload()} >Choose Photo</div>
                     {image && <p>{image.name}</p> }
-                <button className={form.button}>Upload Image</button>
+                    <button className={form.button}>Upload Image</button>
             </form>
         </>
     );
