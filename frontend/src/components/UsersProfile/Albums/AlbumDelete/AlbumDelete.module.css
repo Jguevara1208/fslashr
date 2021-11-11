@@ -8,6 +8,7 @@
     font-size: 25px;
     color: rgba(0, 0, 0, .6);
     transition: .3s cubic-bezier(1, 0, 0, 1);
+    transform: translate(0px, 3.5px);
 }
 
 .button:hover {
@@ -45,7 +46,7 @@
     background-color: white;
     border: 3px solid #026670;
     color: #026670;
-    font-weight: 600;
+    font-weight: 600;    
     transition: .2s cubic-bezier(0.6, 0.04, 0.98, 0.335);
     cursor: pointer;
 }

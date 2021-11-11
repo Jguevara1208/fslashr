@@ -56,7 +56,7 @@ function Photo({photo}) {
                             </form>
 
                         :   
-                            <p onClick={() => setCaptionEditActive(true)}>
+                            <p className={edit.text_for_input} onClick={() => setCaptionEditActive(true)}>
                                 {photo.caption}
                             </p>
                     }
@@ -78,7 +78,7 @@ function Photo({photo}) {
                                 </form>
 
                             :   
-                                <p onClick={() => setCameraSettingsEditActive(true)}>
+                                <p className={edit.text_for_input} onClick={() => setCameraSettingsEditActive(true)}>
                                     {photo.cameraSettings}
                                 </p>
                         }

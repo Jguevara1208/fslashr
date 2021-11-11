@@ -18,7 +18,7 @@ function Edit() {
     return (
         <div className={edit.wrapper}>
             <p style={{ textAlign: 'center', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px' }}>Edit Photos</p>
-            <p className={edit.directions}>Click the  information you'd like to edit</p>
+            <p className={edit.directions}>Click the text of any photo to open an input to edit it.</p>
             <div className={edit.container}>
                 {sessionPhotos && sessionPhotos.map(photo => (
                     <Photo photo={photo} key={photo.id}/>

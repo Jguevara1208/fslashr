@@ -26,12 +26,34 @@
     margin-bottom: 0px; 
 }
 
+.counter {
+    text-align: left;
+    align-self: flex-start;
+    margin-left: 20px;
+    color: rgba(0, 0, 0, .8); 
+    font-size: 14px; 
+    font-weight: 300; 
+    margin-top: -20px;
+}
+
+.editTitle {
+    color: rgba(0, 0, 0, .9); 
+    font-size: 14px; 
+    font-weight: 300; 
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
 .goBack {
     width: 60%;
     display: flex;
     justify-content: flex-start;
     margin-top: 10px;
     cursor: pointer; 
+}
+
+.goBack:hover {
+    color: #026670;
 }
 
 .photoWrapper {
@@ -50,18 +72,31 @@
 }
 
 .button {
-    background-color: white;
+    background-color: #F2F2F2;
     border: 3px solid #026670;
     color: #026670;
     padding: 8px;
     font-weight: 600;
     margin-top: 20px;
+    position: fixed;
+    left: 200px;
+    bottom: 100px;
+    cursor: pointer;
 }
 
 .button:hover {
     background-color: #026670;
     color: white;
 }
+
+.directions {
+  width: 80%;
+  text-align: center;
+  color: rgba(0, 0, 0, .7);
+  margin-bottom: 20px;
+  padding: 30px;
+}
+
 
 @media screen and (max-width: 480px) {
     .form {

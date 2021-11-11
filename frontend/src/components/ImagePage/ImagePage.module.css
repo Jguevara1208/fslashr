@@ -28,6 +28,10 @@
     align-self: flex-start;
 }
 
+.back:hover {
+    color: #026670;
+}
+
 .info {
     display: flex;
     flex-direction: column;

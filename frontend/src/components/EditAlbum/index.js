@@ -82,6 +82,7 @@ function EditAlbum() {
             </div>
             <p style={{textAlign: 'left', color: 'rgba(0, 0, 0, .5)', fontSize: '18px', fontWeight: '200', marginBottom: '0px', marginTop: '30px', }}>Edit Album</p>
             <form className={albumForm.form} onSubmit={handleSubmit}>
+                <p className={albumForm.editTitle}>Edit Title</p>
                 {!titleEdit 
                 ? 
                     <p className={edit.titleP} onClick={toggleEdit} >{title}</p> 

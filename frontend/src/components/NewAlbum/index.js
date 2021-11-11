@@ -59,11 +59,13 @@ function NewAlbum() {
                 ? 
                     <form className={albumForm.form} onSubmit={handleSubmit}>
                         <p className={albumForm.addAnAlbum}>Add an album</p>
+                        <p className={albumForm.counter}>{selectedPhotos.length} photos selected</p>
                         <div className={form.standardInput}>
                             <input className={form.input} type="text" name='title' placeholder=' ' value={albumTitle} onChange={(e) => setAlbumTitle(e.target.value)} required />
                             <label className={form.label} htmlFor="title" >Title</label>
                             <span className={form.underline} ></span>
                         </div>
+                        <p className={albumForm.directions}>Click the photos you would like to add to this album</p>
                         <div className={albumForm.allPhotos}>
                             {availablePhotos.length && availablePhotos.map(photo => (
                                 <div className={albumForm.photoWrapper} key={photo.id} onClick={handleSelect}>
@@ -74,7 +76,7 @@ function NewAlbum() {
                         <button className={albumForm.button}>Create Album</button>
                     </form>
                 :
-                    <p>All of your photos are in albums!</p>
+                    <p>All of your photos are in albums already!</p>
             }
         </div>
     );
