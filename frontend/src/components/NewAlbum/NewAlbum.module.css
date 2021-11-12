@@ -107,8 +107,28 @@
         align-self: center;
     }
 
+    .counter {
+        align-self: center;
+    }
+
     .goBack {
         align-self: flex-start;
         margin-left: 30px;
+    }
+
+    .button {
+        visibility: hidden;
+        position: fixed;
+        bottom: 15px;
+    }
+
+    .button:after {
+        content: '+';
+        visibility: visible;
+        padding: 10px 20px;
+        border-radius: 50%;
+        font-size: 30px;
+        background-color: #026670;
+        color: white;
     }
 }

@@ -25,7 +25,7 @@ function HomePage() {
     return (
         <div className={home.wrapper}>
             <div className={home.activity}>
-                <Link className={`${link.link} ${home.link}`} to={`/users/${sessionUser?.id}`}>Your Profile</Link>
+                <Link className={home.button} to={`/users/${sessionUser?.id}`}>Your Profile</Link>
             </div>
             <p className={home.actP}>Activity</p>
 

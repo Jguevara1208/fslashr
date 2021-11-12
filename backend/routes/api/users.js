@@ -85,17 +85,23 @@ router.get('/:userId/albums', restoreUser, asyncHandler(async (req, res) => {
 
 
 router.get ('/:userId/feed', restoreUser, asyncHandler(async (req, res) => {
-    const userId = req.params.userId;
-    const following = await Follow.findAll({
-        where: { userId }
-    })
+    // const userId = req.params.userId;
+    // const following = await Follow.findAll({
+    //     where: { userId }
+    // })
 
-    const userFollowingIds = following.map(following => following.followingId);
+    // const userFollowingIds = following.map(following => following.followingId);
+    // const feed = await Photo.findAll({
+    //     include: [User],
+    //     where: { userId: userFollowingIds },
+    //     limit: 50
+    // });
+
+    // res.json(feed)
     const feed = await Photo.findAll({
         include: [User],
-        where: { userId: userFollowingIds },
         limit: 50
-    });
+    })
 
     res.json(feed)
 }));
