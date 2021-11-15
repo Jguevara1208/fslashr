@@ -4,7 +4,7 @@
     <img src="https://cdn.discordapp.com/attachments/906292935765667874/906293015436492840/RH-link.png" alt="Logo" width="90" height="90">
   </a>
 
-  <h3 align="center">NotRobinhood</h3>
+  <h3 align="center">F/r</h3>
 
   <p align="center">
     <a href="https://fslashr.herokuapp.com/" target="_blank"><strong>Explore the website »</strong></a>
@@ -44,50 +44,65 @@
 
 <br>
 
-### [NotRobinhood](https://notrobinhood.herokuapp.com/)
+### [F/r](https://notrobinhood.herokuapp.com/)
 
-NotRobinhood is a web application built for investors to monitor, buy/sell stocks, and get the latest news in tech. NotRobinhood eases the creation, exploration, and organization of different stocks through the use of watchlists. A user will be able to view their profits or losses on their dashboard page, as well as the gains or losses on each individual stock. NotRobinhood also offers a way to see immediate results through the use of color on the charts and the entire page either in red or green depending on losses/profits.
+F/r is a website built for people who have a passion for film photography.
 
 ### Built With 
 [Back to top](#table-of-contents)
-* [Finnhub - Stock API](https://finnhub.io/)
 * [AWS - Amazon Web Services](https://aws.amazon.com/)
 * [PostgreSQL](https://www.postgresql.org/docs/)
-* [SQLAlchemy](https://www.sqlalchemy.org/)
-* [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+* [Sequelize](https://sequelize.org/)
+* [ExpressJS](https://expressjs.com/)
 * [React](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
 
 ## Usage
-Users have the ability switch between a light and dark mode. The accent colors are reactive to the current stock price. If the stock is in the negatives, the accents will be red. If the stock is doing well, the colors will be green for lightmode, and blue for dark mode.
+feed
 
 <br>
 
-![l-d](./gifs/mode.gif)
+![feed](./gifs/feed.gif)
 
 <br>
 
-Users can buy and sell stocks on the stocks assets page.
+photo stream and favorites
 
 <br>
 
-![b-s](./gifs/buy-sell.gif)
+![ps](./gifs/ps.gif)
 
 <br>
 
-Users can switch between resolutions to see how the stock is doing throughout different time frames.
+new Album
 
 <br>
 
-![res](./gifs/resolution.gif)
+![new-album](./gifs/new-album.gif)
 
 <br>
 
-Users can create and delete Watchlists. They may also add/remove companies to/from the watchlists.
+edit album
 
 <br>
 
-![wl](./gifs/l-d-mode.gif)
+![edit-album](./gifs/edit-album.gif)
+
+<br>
+
+Edit photo
+
+<br>
+
+![edit-photo](./gifs/edit-photo.gif)
+
+<br>
+
+Photo Page
+
+<br>
+
+![photo-page](./gifs/photo-page.gif)
 
 ## Interesting Issues:
 ### Dynamic Algorithm to turn API response into graphable points.
