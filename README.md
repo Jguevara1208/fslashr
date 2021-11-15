@@ -102,7 +102,7 @@ On this page users can view an individual photo's information. The user that pos
 
 <br>
 
-![photo-page](./gifs/photo-page.gif)
+![photo](./gifs/photo.gif)
 
 ## Interesting Issues:
 ### Deletion and Addition of photos in Album Edit
