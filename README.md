@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://fslashr.herokuapp.com/">
-    <img src="https://cdn.discordapp.com/attachments/906292935765667874/906293015436492840/RH-link.png" alt="Logo" width="90" height="90">
+    <img src="https://cdn.discordapp.com/attachments/908759674076168263/909876870349221908/navbar-logo.png" alt="Logo" width="90" height="90">
   </a>
 
   <h3 align="center">F/r</h3>
@@ -105,12 +105,14 @@ Photo Page
 ![photo-page](./gifs/photo-page.gif)
 
 ## Interesting Issues:
-### Dynamic Algorithm to turn API response into graphable points.
+### 
 [Back to top](#table-of-contents) 
 
-<b>Issue</b>: We are using multiple APIs to get up to date information on stocks. The information we are getting back needs to be turned into an object that we can use to feed data to the Recharts library to allow for the graph to be presented on each page. We also needed to be able to do it for just one stock, or a user's entire portfolio
+<b>Issue</b>: 
 
-<b>Solution</b>: We created a dynamic alogrithm that is able to to take any resolution (timeframe), figure out whether it's a weekend or not (unable to get information from the API for weekends because the stock market is closed), take one or 100 stock symbols, translate UNIX timestamps (what was being given from the API) into user friendly times, and match all of the stock candles data to those times. We were able to package all of this into one function which we used from our redux stores to gather all of the information we needed, all while keeping our redux stores clean and readable.
+<b>Solution</b>: 
+[Back to top](#table-of-contents)
+
 ## Features to Implement Next
 [Back to top](#table-of-contents)
 
