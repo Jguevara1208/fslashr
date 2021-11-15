@@ -44,7 +44,7 @@
 
 <br>
 
-### [F/r](https://notrobinhood.herokuapp.com/)
+### [F/r](https://fslashr.herokuapp.com/)
 
 F/r is a website built for people who have a passion for film photography. Users can upload photos with captions and the camera settings used for the photograph being uploaded. F/r allows users to scroll through 500+ film photos and create collections of ones you have loved to view later. Users can also greate albums to store photos they have taken.
 
