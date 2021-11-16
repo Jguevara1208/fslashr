@@ -177,6 +177,13 @@ h3 {
     object-position: center;
 }
 
+.uploadAvatar {
+    width: 100px;
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
+}
+
 @media screen and (max-width: 480px) {
     .form {
         padding: 40px

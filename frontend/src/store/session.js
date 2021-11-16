@@ -46,23 +46,30 @@ export const signup = (user) => async (dispatch) => {
         lastName,
         avatarUrl,
         bio 
-    } = user;
+    } = user; 
+
+    const newUser = new FormData()
+
+    if (user) {
+        newUser.append('image', avatarUrl)
+        newUser.append('username', username)
+        newUser.append('email', email)
+        newUser.append('password', password)
+        newUser.append('firstName', firstName)
+        newUser.append('lastName', lastName)
+        newUser.append('bio', bio)
+    }
+
+    console.log(newUser)
 
     const response = await csrfFetch('/api/users', {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "multipart/form-data"
         },
-        body: JSON.stringify({
-            username,
-            email,
-            password,
-            firstName,
-            lastName,
-            avatarUrl,
-            bio
-        })
+        body: newUser
     });
+
     const data = await response.json();
     dispatch(setUser(data.user));
     return response;

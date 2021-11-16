@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://fslashr.herokuapp.com/">
-    <img src="https://cdn.discordapp.com/attachments/908759674076168263/909876870349221908/navbar-logo.png" alt="Logo" width="90" height="90">
+    <img src="https://cdn.discordapp.com/attachments/908759674076168263/909876870349221908/navbar-logo.png" alt="Logo" width="150" height="150">
   </a>
 
   <h3 align="center">F/r</h3>
@@ -44,9 +44,9 @@
 
 <br>
 
-### [F/r](https://notrobinhood.herokuapp.com/)
+### [F/r](https://fslashr.herokuapp.com/)
 
-F/r is a website built for people who have a passion for film photography.
+F/r is a website built for people who have a passion for film photography. Users can upload photos with captions and the camera settings used for the photograph being uploaded. F/r allows users to scroll through 500+ film photos and create collections of ones you have loved to view later. Users can also greate albums to store photos they have taken.
 
 ### Built With 
 [Back to top](#table-of-contents)
@@ -58,7 +58,7 @@ F/r is a website built for people who have a passion for film photography.
 * [Redux](https://redux.js.org/)
 
 ## Usage
-feed
+Users can see a feed of some of the most recent photos. From this page user's can view photos, like photos, and go to other user's pages.
 
 <br>
 
@@ -66,7 +66,7 @@ feed
 
 <br>
 
-photo stream and favorites
+Users can view a photostream of their published photos, and they can also see a photostream of all of the photos that they have favorited.
 
 <br>
 
@@ -74,7 +74,7 @@ photo stream and favorites
 
 <br>
 
-new Album
+Users can create a new album. On this page, users can create a title and select any photos that they wish to add to that album.
 
 <br>
 
@@ -82,7 +82,7 @@ new Album
 
 <br>
 
-edit album
+Users can edit existing albums. On this page users can update the album's title, remove old photos from the album, and add new photos to the album.
 
 <br>
 
@@ -90,7 +90,7 @@ edit album
 
 <br>
 
-Edit photo
+Users can edit the information for each individual photo. The user can do this by simply clicking on the information they wish the edit. They may also delete the photo from this page.
 
 <br>
 
@@ -98,34 +98,32 @@ Edit photo
 
 <br>
 
-Photo Page
+On this page users can view an individual photo's information. The user that posted it, allowing them to follow or unfollow that user. They can also favorite the photo, or see the comments. When the comments tab is open, they may add a comment or delete comments they have written on that photo.
 
 <br>
 
-![photo-page](./gifs/photo-page.gif)
+![photo](./gifs/photo.gif)
 
 ## Interesting Issues:
-### 
+### Deletion and Addition of photos in Album Edit
 [Back to top](#table-of-contents) 
 
-<b>Issue</b>: 
+<b>Issue</b>: Was having a hard to visualizing the UI of the album edit functionality. Users needed to be able to add and delete photos from an album simultaneously.
 
-<b>Solution</b>: 
-[Back to top](#table-of-contents)
+<b>Solution</b>: I ended up creating two seperate useStates, one for the addition of photos, and one for the removal of photos. As a user clicks photos through this page, it will detect whether it has been added or not, and remove/add it to the appropriate useState array. Upon completion both arrays will be send to the API to persist these changes to the database. As for the UI, I wanted something sleek and easy to understand. I did this by having photos that are already in, or have been selected, have 100% opacity, more shadow, and growing the size a bit. Conversely, when a photo is not selected, they would have 50% opacity, less shadow, and shrink.
+
 
 ## Features to Implement Next
 [Back to top](#table-of-contents)
 
 <b>Overview</b>:
 
-### <b>Feature</b>: Trending Lists
-<b>How I would do it</b>: Trending Lists are on the dashboard/portfolio page to display the most popular lists on the site. This component will house links to other lists that contain the most popular stocks. Each list's name will act as a button that will redirect users to another page containing those stocks.
+### <b>Feature</b>: Drag and Drop for photo uploads
+<b>How I would do it</b>: I will do this by utilizing the React-DnD package. This will allow users to drag and drop the photos they wish to upload, and it will allow the user to see the photo before submitting.
 
-### <b>Feature</b>: Key statistics
-<b>How I would do it</b>: We would use the Finnhub API to pull the relavent information and present a new component on the individual stock page to show its information. This information includes Market Cap, Price-Earnings ratio, Divident yield, average volume, High-Today, Low-Today, open price, volume, 52 week high, and 52 week low fields in an organized grid format.
+### <b>Feature</b>: User Info popup
+<b>How I would do it</b>: I will do this by filling my redux feed slice of state with a bit more information on the owner of each photo. When a user hovers over the name of a photo card, I will set the visibility of a relatively positioned div to visible, revealing some of the other photos that user has uploaded, and allowing the user to follow the other user from this container.
 
-### <b>Feature</b>: Related lists
-<b>How I would do it</b>: Related lists would act as a tag of sorts to make it easier to find stocks in the same industry, location, or other groups. These lists can be displayed in their own component on the stock page under the key statistics to allow users to find other similar stocks. Each related list will act as button that will redirect the user to another page containing those stocks.
 
 <!-- CONTACT -->
 ## Contact
@@ -138,7 +136,3 @@ Project Repo Link: [https://github.com/Jguevara1208/fslashr](https://github.com/
 Project Link: [https://fslashr.herokuapp.com/](https://fslashr.herokuapp.com/)
 
 
-<!-- ACKNOWLEDGEMENTS --
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[linkedin-url]: https://linkedin.com/in/
