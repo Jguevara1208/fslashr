@@ -186,4 +186,8 @@ h3 {
         padding: 10px 40px;
         row-gap: 18px;
     }
+
+    .uploadImage {
+        width: 250px;
+    }
 }

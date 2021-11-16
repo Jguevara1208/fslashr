@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import * as sessionAction from '../../store/session';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
@@ -8,7 +8,9 @@ import logo from '../LoginFormModal/modalLogo'
 
 function SignupFormPage() {
     const dispatch = useDispatch();
+
     const sessionUser = useSelector(state => state.session.user);
+
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
@@ -18,11 +20,18 @@ function SignupFormPage() {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
+    const fileUpload = useRef(null)
+    const imageRef = useRef()
+
     const history = useHistory()
 
     if (sessionUser) return (
         <Redirect to='/' />
     );
+
+    const handleUpload = () => {
+        fileUpload.current.click()
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
