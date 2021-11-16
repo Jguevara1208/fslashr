@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
+const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
 const { Photo, User, Favorite, Album, Follow } = require('../../db/models')
 const { Op } = require('sequelize');
 const router = express.Router();
@@ -35,14 +36,16 @@ const validateSignup = [
 /*--------------------------------------------User Signup------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------------*/
 
-router.post('/', validateSignup, asyncHandler(async(req, res) => {
+
+router.post('/', singleMulterUpload("image"), asyncHandler(async (req, res) => {
+    const avatarUrl = await singlePublicFileUpload(req.file);
+
     const { 
         username,
         email,
         password,
         firstName,
         lastName,
-        avatarUrl,
         bio
     } = req.body;
 

@@ -16,7 +16,6 @@ router.post('/', restoreUser, singleMulterUpload("image"), asyncHandler(async (r
     let albumId;
     const { caption, cameraSettings } = req.body;
     req.body.albumId === 'undefined' ? albumId = null : albumId = req.body.albumId;
-
     const photo = await Photo.create({imgUrl, userId, albumId, caption, cameraSettings});
     res.json(photo);
 }));

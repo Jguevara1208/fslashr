@@ -33,11 +33,19 @@ function SignupFormPage() {
         fileUpload.current.click()
     }
 
+    const setPhoto = (e) => {
+        const file = e.target.files[0]
+        setAvatarUrl(file)
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+            imageRef.current.src = reader.result
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([])
-
-
         dispatch(sessionAction.signup({ 
             username,
             email,
@@ -119,18 +127,10 @@ function SignupFormPage() {
                 <label className={form.label} htmlFor="email" >Email</label>
                 <span className={form.underline} ></span>
             </div>
-            <div className={form.standardInput}>
-                <input
-                    className={form.input} 
-                    type="text" 
-                    name='avatarUrl' 
-                    placeholder=' ' 
-                    value={avatarUrl} 
-                    onChange={(e) => setAvatarUrl(e.target.value)} 
-                    required 
-                />
-                <label className={form.label} htmlFor="avatarUrl" >Avatar Url</label>
-                <span className={form.underline} ></span>
+            {avatarUrl && <img className={form.uploadAvatar} ref={imageRef} src="" alt="" />}
+            <div>
+                <input type='file' className={form.inputfile} ref={fileUpload} onChange={setPhoto} />
+                <div className={form.fileChooser} onClick={() => handleUpload()} >Choose Photo</div>
             </div>
             <div className={form.standardInput}>
                 <input
