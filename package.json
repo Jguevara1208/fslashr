@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Jguevara1208/SoloProject/issues"
   },
-  "homepage": "https://github.com/Jguevara1208/SoloProject#readme"
+  "homepage": "https://github.com/Jguevara1208/SoloProject#readme",
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
 }

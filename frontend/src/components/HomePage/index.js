@@ -2,11 +2,9 @@ import {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFeed } from '../../store/userInfo'
 import FavoriteButton from '../FavoriteButton';
-import { BiComment } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
 import { getFavorites } from '../../store/favorites';
 import home from './HomePage.module.css';
-import link from '../Navigation/Navigation.module.css'
 
 function HomePage() {
 
@@ -59,7 +57,6 @@ function HomePage() {
                         </div>
                         <div className={home.cardIcons}>
                             <FavoriteButton photoId={photo.id} favorites={favorites}/>
-                            <BiComment className={home.comment} />
                         </div>
                     </div>
                 </div>
