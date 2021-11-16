@@ -15,13 +15,19 @@ function UploadForm() {
     const [caption, setCaption] = useState('');
     const [cameraSettings, setCameraSettings] = useState('');
     const [userId] =  useState(currentUserId);
-    const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
     const fileUpload = useRef(null);
+    const imageRef = useRef()
 
     const setPhoto = (e) => {
         setImage(e.target.files[0])
+        const file = e.target.files[0]
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+            imageRef.current.src = reader.result
+        }
     }
 
     const handleUpload =  () => {
@@ -31,7 +37,6 @@ function UploadForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault(addImage);
-        let newErrors = [];
         dispatch(addImage({image, caption, cameraSettings, userId}))
         reset()
         history.push(`/users/${currentUserId}`)
@@ -41,7 +46,6 @@ function UploadForm() {
         setImage(null);
         setCaption('');
         setCameraSettings('');
-        setErrors([]);
     };
 
     return (
@@ -75,7 +79,7 @@ function UploadForm() {
                 </div>
                     <input type='file' className={form.inputfile} ref={fileUpload} onChange={setPhoto} />
                     <div className={form.fileChooser} onClick={() => handleUpload()} >Choose Photo</div>
-                    {image && <p>{image.name}</p> }
+                    {image && <img className={form.uploadImage} ref={imageRef} src="" alt="" /> }
                     <button className={form.button}>Upload Image</button>
             </form>
         </>

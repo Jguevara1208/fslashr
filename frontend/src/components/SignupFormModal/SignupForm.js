@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionAction from '../../store/session';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+import * as sessionActions from '../../store/session';
 import form from '../LoginFormModal/LoginForm.module.css'
 import logo from '../LoginFormModal/modalLogo'
 
@@ -44,6 +45,14 @@ function SignupFormPage() {
         );
         history.push('/')
     };
+
+    const demoUser = () => {
+        dispatch(sessionActions.login({
+            credential: 'DemoUser123',
+            password: 'Password1!'
+        }));
+        history.push('/')
+    }
 
     return (
         <form className={form.SignUpform} onSubmit={handleSubmit}>
@@ -141,6 +150,7 @@ function SignupFormPage() {
                 <span className={form.underline} ></span>
             </div>
             <button className={form.button}>Sign Up</button>
+            <p className={form.demo} onClick={demoUser}>Demo User</p>
         </form>
     )
 }

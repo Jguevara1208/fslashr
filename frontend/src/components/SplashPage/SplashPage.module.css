@@ -62,7 +62,17 @@
     font-weight: 200;
 }
 
+.socialContainer {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+}
 
+.social {
+    color: white;
+    font-size: 35px;
+    margin: 10px;
+}
 
 @media screen and (max-width: 1124px) {
     .h3 {

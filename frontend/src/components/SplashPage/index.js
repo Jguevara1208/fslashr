@@ -6,6 +6,7 @@ import images from './splashPhotos';
 import splash from './SplashPage.module.css';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 
 function SplashPage() {
 
@@ -50,6 +51,10 @@ function SplashPage() {
                     <div>
                         <SignupFormModal />
                     </div>
+                </div>
+                <div className={splash.socialContainer}>
+                    <a className={splash.social} target='_blank' rel='noreferrer' href="https://github.com/Jguevara1208/fslashr"><AiFillGithub /></a>
+                    <a className={splash.social} target='_blank' rel='noreferrer' href="https://www.linkedin.com/in/jordan-guevara-a9370521a/"><AiFillLinkedin /></a>
                 </div>
             </div>
         </>
